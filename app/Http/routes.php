@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',                 'ApplicationController@index');
+Route::get('/assessment',       'ApplicationController@assessment');
+Route::get('/help',             'ApplicationController@help');
+Route::get('/contact',          'ApplicationController@contact');
+
+Route::get('/result',           'ResultController@index');
+Route::get('/result/people',    'ResultController@people');
+Route::get('/result/mail',      'ResultController@mail');
+Route::get('/result/location',  'ResultController@location');
+Route::get('/result/website',   'ResultController@website');
