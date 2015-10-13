@@ -20,9 +20,16 @@
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <h2>Supported Tools</h2>
-            <p>Lorem ipsum dolor sit amet ...</p>
+            <p>
+                Lorem ipsum dolor sit amet ...
+            <ul>
+                <li>Recon-ng (<a href="https://bitbucket.org/LaNMaSteR53/recon-ng">https://bitbucket.org/LaNMaSteR53/recon-ng</a>)</li>
+                <li>Cree.py (<a href="http://www.geocreepy.com">http://www.geocreepy.com</a>)</li>
+                <li>Maltego (<a href="https://www.paterva.com/web6/products/maltego.php">https://www.paterva.com/web6/products/maltego.php</a>)</li>
+            </ul>
+            </p>
             <h2>How can I use the tools?</h2>
             <p>
                 Lorem ipsum dolor sit amet ...

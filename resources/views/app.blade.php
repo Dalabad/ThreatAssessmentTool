@@ -151,19 +151,19 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li class="active">
+                <li class="{{ (Request::is('/') )  ? 'active' : '' }}">
                     <a href="{{ url('/') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
-                <li>
+                <li class="{{ (Request::is('result') || Request::is('result/*'))  ? 'active' : '' }}">
                     <a href="{{ url('/result') }}"><i class="fa fa-fw fa-table"></i> Gathered Results</a>
                 </li>
-                <li>
+                <li class="{{ (Request::is('assessment') )  ? 'active' : '' }}">
                     <a href="{{ url('/assessment') }}"><i class="fa fa-fw fa-edit"></i> Assessment</a>
                 </li>
-                <li>
+                <li class="{{ (Request::is('help') )  ? 'active' : '' }}">
                     <a href="{{ url('/help') }}"><i class="fa fa-fw fa-question-circle"></i> Help</a>
                 </li>
-                <li>
+                <li class="{{ (Request::is('contact') )  ? 'active' : '' }}">
                     <a href="{{ url('/contact') }}"><i class="fa fa-fw fa-info-circle"></i> Contact</a>
                 </li>
             </ul>
