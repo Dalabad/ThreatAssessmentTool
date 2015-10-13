@@ -22,19 +22,29 @@
                 <div class="form-group">
                     <label for="inputCompanyName" class="col-sm-2 control-label">Company Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputCompanyName" placeholder="Company Name">
+                        <input type="text" class="form-control" id="inputCompanyName" name="companyName" placeholder="Company Name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputCompanySize" class="col-sm-2 control-label">Amount of Employees</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputCompanySize" placeholder="100">
+                        <input type="text" class="form-control" id="inputCompanySize" name="employeeCount" placeholder="100">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputCompanyWebsite" class="col-sm-2 control-label">Company Website</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputCompanyWebsite" placeholder="http://www.company.com">
+                        <input type="text" class="form-control" id="inputCompanyWebsite" name="companyWebsite" placeholder="http://www.company.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selectAttackType" class="col-sm-2 control-label">Attack Type</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="" id="selectAttackType">
+                            <option value="1">Phishing</option>
+                            <option value="2">Coming soon ...</option>
+                            <option value="3">Coming soon ...</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
