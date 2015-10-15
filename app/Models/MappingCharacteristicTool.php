@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class MappingCharacteristicTool extends Model
 {
-    //
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'mapping_characteristic_tool';
 }
