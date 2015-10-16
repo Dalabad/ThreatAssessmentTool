@@ -9,7 +9,10 @@
 namespace App\Libraries\Crawler;
 
 
-class XingCrawler
+use App\Models\Person;
+use Sunra\PhpSimple\HtmlDomParser;
+
+class LinkedInCrawler
 {
     public static function crawl($url) {
         $findings = [];
@@ -32,7 +35,35 @@ class XingCrawler
 
         curl_close($curl);
 
-        return $html;
+        return LinkedInCrawler::analyze($html);
+    }
+
+    private static function analyze($html) {
+        $dom = HtmlDomParser::str_get_html( $html );
+        $person = new Person();
+
+        $fullName = $dom->find('span.full-name', 0)->plaintext;
+        $explodedName = explode(' ', $fullName);
+        $firstName = $explodedName[0];
+        $lastName = $explodedName[1];
+
+        $jobTitleAndCompany = $dom->find('#headline .title', 0)->plaintext;
+        $explodedTitle = explode(' at ', $jobTitleAndCompany);
+        $jobTitle = $explodedTitle[0];
+        $companyName = $explodedTitle[1];
+
+        $location = $dom->find('#location .locality', 0)->plaintext;
+        $industry = $dom->find('#location .industry', 0)->plaintext;
+        $website = $dom->find('#overview-summary-websites a', 0)->href;
+
+        $person->addAttribute("first-name", $firstName)
+            ->addAttribute('last-name', $lastName)
+            ->addAttribute('job-title', $jobTitle)
+            ->addAttribute('company', $companyName)
+            ->addAttribute('location', $location)
+            ->addAttribute('industry', $industry)
+            ->addAttribute('website', $website);
+        return $person;
     }
 
 }
