@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form class="form-horizontal" method="post" action="{{ url('/') }}">
+            <form class="form-horizontal" method="post" id="companyInformationForm" action="{{ url('/') }}">
                 <div class="form-group">
                     <label for="inputCompanyName" class="col-sm-2 control-label">Company Name</label>
                     <div class="col-sm-10">
