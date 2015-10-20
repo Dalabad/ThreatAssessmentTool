@@ -10,12 +10,13 @@ namespace App\Libraries\Crawler;
 
 
 use App\Models\Person;
+use Faker\Provider\UserAgent;
 use Sunra\PhpSimple\HtmlDomParser;
 
 class LinkedInCrawler
 {
     public static function crawl($url) {
-        $agent= 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36';
+        $agent = UserAgent::chrome();
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
