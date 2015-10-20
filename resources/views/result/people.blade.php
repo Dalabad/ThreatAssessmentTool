@@ -113,4 +113,78 @@
         </div>
     </div>
     <!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Website</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Foo Bar</td>
+                    <td><a href="mailto:foobar@company.com">foobar@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>Larry Page</td>
+                    <td><a href="mailto:larry@company.com">larry@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>Bill Gates</td>
+                    <td><a href="mailto:bill@company.com">bill@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>Steve Jobs</td>
+                    <td><a href="mailto:steve@company.com">steve@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>Max Mustermann</td>
+                    <td><a href="mailto:muster@company.com">muster@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td><a href="mailto:john@company.com">john@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>Jane Doe</td>
+                    <td><a href="mailto:jane@company.com">jane@company.com</a></td>
+                    <td>Munich, Germany</td>
+                    <td><a href="http://www.foobar.com">www.foobar.com</a></td>
+                </tr>
+                <tr>
+                    <td>Mike</td>
+                    <td>-</td>
+                    <td>Berlin, Germany</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Joe</td>
+                    <td><a href="mailto:joe@company.com">joe@company.com</a></td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
 @stop
