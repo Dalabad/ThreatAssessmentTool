@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c09d70da-9390-4f3d-ac2c-6996d44e48a9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApplicationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApplicationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/Crawler/LinkedInCrawler.php" afterPath="$PROJECT_DIR$/app/Libraries/Crawler/LinkedInCrawler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Person.php" afterPath="$PROJECT_DIR$/app/Models/Person.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/Import/ReconNgImport.php" afterPath="$PROJECT_DIR$/app/Libraries/Import/ReconNgImport.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/demo-files/recon-ng/google.json" afterPath="$PROJECT_DIR$/storage/demo-files/recon-ng/google.json" />
     </list>
     <ignored path="ThreatAssessmentTool.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="XingCrawler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Libraries/Crawler/XingCrawler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.111111">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.777778">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="e#127#149#0#PHP" expanded="true" />
               </folding>
@@ -41,11 +39,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LinkedInCrawler.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="google.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/demo-files/recon-ng/google.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3333334">
+              <caret line="24123" column="4" selection-start-line="24123" selection-start-column="4" selection-end-line="24123" selection-end-column="4" />
+              <folding>
+                <element signature="e#34#650397#0" expanded="false" />
+                <element signature="e#650413#658037#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LinkedInCrawler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Libraries/Crawler/LinkedInCrawler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0331491">
-              <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            <state vertical-scroll-proportion="-7.4444447">
+              <caret line="58" column="72" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
               <folding>
                 <element signature="e#128#150#0#PHP" expanded="true" />
               </folding>
@@ -56,8 +67,8 @@
       <file leaf-file-name="ApplicationController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApplicationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.666667">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+            <state vertical-scroll-proportion="-12.0">
+              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding>
                 <element signature="e#40#82#0#PHP" expanded="true" />
               </folding>
@@ -65,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReconNgImport.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReconNgImport.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Libraries/Import/ReconNgImport.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.111111">
-              <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.6685083">
+              <caret line="89" column="53" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
               <folding>
                 <element signature="e#127#169#0#PHP" expanded="true" />
               </folding>
@@ -150,7 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/app/imprint.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/app/assessment.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/app/result.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResultController.php" />
@@ -197,10 +207,11 @@
         <option value="$PROJECT_DIR$/app/Libraries/Crawler/Useragent.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Libraries/Crawler/XingCrawler.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ApplicationController.php" />
         <option value="$PROJECT_DIR$/app/Models/Person.php" />
-        <option value="$PROJECT_DIR$/app/Libraries/Import/ReconNgImport.php" />
         <option value="$PROJECT_DIR$/app/Libraries/Crawler/LinkedInCrawler.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ApplicationController.php" />
+        <option value="$PROJECT_DIR$/storage/demo-files/recon-ng/google.json" />
+        <option value="$PROJECT_DIR$/app/Libraries/Import/ReconNgImport.php" />
       </list>
     </option>
   </component>
@@ -720,12 +731,12 @@
       <workItem from="1444730604947" duration="10076000" />
       <workItem from="1444936693154" duration="1544000" />
       <workItem from="1444997059106" duration="6680000" />
-      <workItem from="1445335531357" duration="6183000" />
+      <workItem from="1445335531357" duration="7099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30481000" />
+    <option name="totallyTimeSpent" value="31397000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="1920" height="1024" extended-state="6" />
@@ -864,13 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.57608694">
           <caret line="77" column="86" selection-start-line="77" selection-start-column="86" selection-end-line="77" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/demo-files/recon-ng/google.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30657" column="63" selection-start-line="30657" selection-start-column="14" selection-end-line="30657" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -1118,16 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/Crawler/XingCrawler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.111111">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="e#127#149#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Person.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.111111">
@@ -1136,10 +1130,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libraries/Crawler/LinkedInCrawler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.4444447">
+          <caret line="58" column="72" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
+          <folding>
+            <element signature="e#128#150#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libraries/Crawler/XingCrawler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.777778">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#127#149#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/demo-files/recon-ng/google.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3333334">
+          <caret line="24123" column="4" selection-start-line="24123" selection-start-column="4" selection-end-line="24123" selection-end-column="4" />
+          <folding>
+            <element signature="e#34#650397#0" expanded="false" />
+            <element signature="e#650413#658037#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApplicationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.666667">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        <state vertical-scroll-proportion="-12.0">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
             <element signature="e#40#82#0#PHP" expanded="true" />
           </folding>
@@ -1148,20 +1173,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Libraries/Import/ReconNgImport.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.111111">
-          <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.6685083">
+          <caret line="89" column="53" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
           <folding>
             <element signature="e#127#169#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/Crawler/LinkedInCrawler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0331491">
-          <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
-          <folding>
-            <element signature="e#128#150#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
