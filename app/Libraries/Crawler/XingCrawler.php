@@ -33,7 +33,6 @@ class XingCrawler
 
         curl_close($curl);
 
-        return $agent.$html;
         return XingCrawler::analyze($html);
     }
 
