@@ -14,8 +14,6 @@ use Sunra\PhpSimple\HtmlDomParser;
 class XingCrawler
 {
     public static function crawl($url) {
-        $findings = [];
-
         $agent= 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36';
 
         $curl = curl_init($url);
@@ -47,19 +45,11 @@ class XingCrawler
         $lastName = $explodedName[1];
 
         $jobTitle = $dom->find('.job-info .job-title', 0)->plaintext;
-//        $companyName = $explodedTitle[1];
-//
-//        $location = $dom->find('#location .locality', 0)->plaintext;
-//        $industry = $dom->find('#location .industry', 0)->plaintext;
-//        $website = $dom->find('#overview-summary-websites a', 0)->href;
 
         $person->addAttribute("first-name", $firstName)
             ->addAttribute('last-name', $lastName)
             ->addAttribute('job-title', $jobTitle);
-//            ->addAttribute('company', $companyName)
-//            ->addAttribute('location', $location)
-//            ->addAttribute('industry', $industry)
-//            ->addAttribute('website', $website);
+
         return $person;
     }
 
