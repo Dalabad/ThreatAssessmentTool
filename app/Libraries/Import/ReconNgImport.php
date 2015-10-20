@@ -39,7 +39,7 @@ class ReconNgImport extends Import
     {
         $json = json_decode($this->importedFile);
 
-        if(property_exists($json,'hosts')) {
+        if(property_exists($json, 'hosts')) {
             foreach($json->hosts as $host) {
                 if(!in_array($host->host, $this->findings["websites"]))
                     $this->findings["websites"][] = $host->host;
@@ -80,7 +80,12 @@ class ReconNgImport extends Import
 
         /* @var $person Person */
         foreach($this->findings['profiles'] as $index => $person) {
-            switch($person->getAttributes()['resource']) {
+            $attributes = $person->getAttributes();
+
+            if(!in_array($attributes['resource'], ['linkedin', 'xing']))
+                continue;
+
+            switch($attributes['resource']) {
                 case 'linkedin':
                     $crawler = new LinkedInCrawler();
                     break;
@@ -89,7 +94,7 @@ class ReconNgImport extends Import
                     break;
             }
 
-            $findings = $crawler->crawl($person->getAttributes()['url']);
+            $findings = $crawler->crawl($attributes['url']);
 
             $this->findings['profiles'][$index] = $person->merge($findings);
         }

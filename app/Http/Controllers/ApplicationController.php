@@ -16,10 +16,9 @@ class ApplicationController extends Controller
 //        $findings = $xingCrawler::crawl("https://www.xing.com/profile/Daniel_Schosser");
 //        $findings = $linkedinCrawler::crawl("https://de.linkedin.com/pub/daniel-schosser/b4/848/b33");
 
-        $importer = new ReconNgImport();
-        $findings = $importer->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/recon-ng/egym.json');
+//        $importer = new ReconNgImport();
+//        $findings = $importer->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/recon-ng/google.json');
 
-        die('<pre>'.print_r($findings));
 
         return view('app.dashboard');
     }
