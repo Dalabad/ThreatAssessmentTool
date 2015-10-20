@@ -42,8 +42,10 @@
                     <div class="col-sm-10">
                         <select class="form-control" name="" id="selectAttackType">
                             <option value="1">Phishing</option>
-                            <option value="2">Coming soon ...</option>
-                            <option value="3">Coming soon ...</option>
+                            <option value="2">Baiting</option>
+                            <option value="3">Impersonation</option>
+                            <option value="4">Coming soon ...</option>
+                            <option value="5">Coming soon ...</option>
                         </select>
                     </div>
                 </div>
