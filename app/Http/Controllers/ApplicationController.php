@@ -9,11 +9,13 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-//        $xingCrawler = new XingCrawler();
-//        $findings = $xingCrawler::crawl("https://www.xing.com/profile/Daniel_Schosser");
+        $xingCrawler = new XingCrawler();
+        $findings = $xingCrawler::crawl("https://www.xing.com/profile/Daniel_Schosser");
 
 //        $linkedinCrawler = new LinkedInCrawler();
 //        $findings = $linkedinCrawler::crawl("https://de.linkedin.com/pub/daniel-schosser/b4/848/b33");
+
+        die('<pre>'.print_r($findings));
 
         return view('app.dashboard');
     }
