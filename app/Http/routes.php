@@ -16,7 +16,7 @@ Route::get('/assessment',       'ApplicationController@assessment');
 Route::get('/help',             'ApplicationController@help');
 Route::get('/contact',          'ApplicationController@contact');
 
-Route::get('/result',           'ResultController@index');
+Route::get('/result',           'ResultController@people');
 Route::get('/result/people',    'ResultController@people');
 Route::get('/result/mail',      'ResultController@mail');
 Route::get('/result/location',  'ResultController@location');
