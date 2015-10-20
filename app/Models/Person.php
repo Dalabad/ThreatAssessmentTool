@@ -14,4 +14,17 @@ class Person
     public function getAttributes() {
         return $this->attributes;
     }
+
+    public function merge(Person $findings)
+    {
+        $newAttributes = $findings->getAttributes();
+
+        foreach($newAttributes as $name => $value) {
+            if(!in_array($name, $this->attributes)) {
+                $this->addAttribute($name, $value);
+            }
+        }
+
+        return $this;
+    }
 }
