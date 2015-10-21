@@ -59,7 +59,7 @@
                     <a href="{{ url('/result') }}"><i class="fa fa-fw fa-table"></i> Gathered Results</a>
                 </li>
                 <li class="{{ (Request::is('assessment') )  ? 'active' : '' }}">
-                    <a href="{{ url('/assessment') }}"><i class="fa fa-fw fa-edit"></i> Assessment</a>
+                    <a href="{{ url('/assessment') }}"><i class="fa fa-fw fa-edit"></i> Threat Assessment</a>
                 </li>
                 <li class="{{ (Request::is('help') )  ? 'active' : '' }}">
                     <a href="{{ url('/help') }}"><i class="fa fa-fw fa-question-circle"></i> Help</a>
