@@ -78,6 +78,14 @@
                     <li>Execute <code>theharvester -d %DOMAIN% -b all -f %filename.xml%</code></li>
                 </ul>
             </ul>
+            <h3>Cree.py</h3>
+            <ul>
+                <li>Start new Project</li>
+                <li>Add Accounts (Twitter, Flickr, Instagram, ...)</li>
+                <li>Analyze Project for locations</li>
+                <li>Export results as KML-File</li>
+                <li>Delete the fourth line from the file. It should look like this: <code>&lt;name&gt;&lt;built-in function id&gt;.kml&lt;/name&gt;</code></li>
+            </ul>
             <h2>Foobar</h2>
             <p>Lorem ipsum dolor sit amet ...</p>
         </div>

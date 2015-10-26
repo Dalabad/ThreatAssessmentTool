@@ -12,6 +12,7 @@ namespace App\Libraries\Import;
 use App\Libraries\Crawler\LinkedInCrawler;
 use App\Libraries\Crawler\XingCrawler;
 use App\Models\Person;
+use Nathanmac\Utilities\Parser\Facades\Parser;
 use Symfony\Component\DomCrawler\Link;
 
 class ReconNgImport extends Import
@@ -25,7 +26,6 @@ class ReconNgImport extends Import
         $this->findings["websites"]  = [];
         $this->findings["profiles"]  = [];
         $this->findings["emails"]    = [];
-        $this->findings["locations"] = [];
 
         $this->importedFile = file_get_contents($file);
 
@@ -37,36 +37,36 @@ class ReconNgImport extends Import
 
     protected function analyze()
     {
-        $json = json_decode($this->importedFile);
+        $array = Parser::json($this->importedFile);
 
-        if(property_exists($json, 'hosts')) {
-            foreach($json->hosts as $host) {
-                if(!in_array($host->host, $this->findings["websites"]))
-                    $this->findings["websites"][] = $host->host;
+        if(count($array['hosts'])) {
+            foreach($array['hosts'] as $host) {
+                if(!in_array($host['host'], $this->findings["websites"]))
+                    $this->findings["websites"][] = $host['host'];
             }
         }
 
-        if(property_exists($json,'contacts')) {
-            foreach($json->contacts as $contact) {
+        if(count($array['contacts'])) {
+            foreach($array['contacts'] as $contact) {
                 $person = new Person();
-                $person->addAttribute('resource', $contact->module)
-                    ->addAttribute("first-name", $contact->first_name)
-                    ->addAttribute('last-name', $contact->last_name)
-                    ->addAttribute('job-title', $contact->title)
-                    ->addAttribute('country', $contact->country)
-                    ->addAttribute('region', $contact->region)
-                    ->addAttribute('email', $contact->email);
+                $person->addAttribute('resource', $contact['module'])
+                    ->addAttribute("first-name", $contact['first_name'])
+                    ->addAttribute('last-name', $contact['last_name'])
+                    ->addAttribute('job-title', $contact['title'])
+                    ->addAttribute('country', $contact['country'])
+                    ->addAttribute('region', $contact['region'])
+                    ->addAttribute('email', $contact['email']);
 
                 $this->findings["profiles"][] = $person;
-                $this->findings["emails"][] = $contact->email;
+                $this->findings["emails"][] = $contact['email'];
             }
         }
 
-        if(property_exists($json,'profiles')) {
-            foreach($json->profiles as $profile) {
+        if(count($array['profiles'])) {
+            foreach($array['profiles'] as $profile) {
                 $person = new Person();
-                $person->addAttribute('resource', $profile->resource)
-                       ->addAttribute('url', $profile->url);
+                $person->addAttribute('resource', $profile['resource'])
+                       ->addAttribute('url', $profile['url']);
 
                 $this->findings["profiles"][] = $person;
             }
