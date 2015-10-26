@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Libraries\Crawler\LinkedInCrawler;
 use App\Libraries\Crawler\XingCrawler;
-use App\Libraries\Import\CreepyImport;
-use App\Libraries\Import\MaltegoImport;
-use App\Libraries\Import\ReconNgImport;
+use App\Libraries\Importer\MaltegoImporter;
+use App\Libraries\Importer\ReconNgImporter;
+use App\Libraries\Importer\CreepyImporter;
 
 class ApplicationController extends Controller
 {
@@ -18,7 +18,7 @@ class ApplicationController extends Controller
 //        $findings = $xingCrawler::crawl("https://www.xing.com/profile/Daniel_Schosser");
 //        $findings = $linkedinCrawler::crawl("https://de.linkedin.com/pub/daniel-schosser/b4/848/b33");
 
-        $importer = new CreepyImport();
+        $importer = new CreepyImporter();
         $findings = $importer->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/creepy/worldtravel.kml');
 
         die('<pre>'.print_r($findings));

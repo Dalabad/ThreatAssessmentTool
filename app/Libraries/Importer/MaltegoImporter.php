@@ -9,13 +9,9 @@
 namespace App\Libraries\Import;
 
 
-use App\Libraries\Crawler\LinkedInCrawler;
-use App\Libraries\Crawler\XingCrawler;
-use App\Models\Person;
 use Nathanmac\Utilities\Parser\Facades\Parser;
-use Symfony\Component\DomCrawler\Link;
 
-class MaltegoImport extends Import
+class MaltegoImporter extends Importer
 {
 
     public $findings;

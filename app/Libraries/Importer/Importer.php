@@ -6,10 +6,10 @@
  * Time: 14:12
  */
 
-namespace App\Libraries\Import;
+namespace App\Libraries\Importer;
 
 
-abstract class Import
+abstract class Importer
 {
 
     /**
