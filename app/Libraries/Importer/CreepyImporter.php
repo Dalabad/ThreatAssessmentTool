@@ -6,17 +6,14 @@
  * Time: 14:16
  */
 
-namespace App\Libraries\Import;
+namespace App\Libraries\Importer;
 
 
-use App\Libraries\Crawler\LinkedInCrawler;
-use App\Libraries\Crawler\XingCrawler;
+use App\Libraries\Converter\Coordinates;
 use App\Models\Location;
-use App\Models\Person;
 use Nathanmac\Utilities\Parser\Facades\Parser;
-use Symfony\Component\DomCrawler\Link;
 
-class CreepyImport extends Import
+class CreepyImporter extends Importer
 {
 
     public $findings;
@@ -41,7 +38,8 @@ class CreepyImport extends Import
             $location = new Location();
             $location->setTimestamp( $placemark['name'] )
                 ->setCoordinates( $placemark['Point']['coordinates'] )
-                ->setDescription( $placemark['description'] );
+                ->setDescription( $placemark['description'] )
+                ->setName( Coordinates::convertCoordinatesToName( $placemark['Point']['coordinates'] ));
             $this->findings['coordinates'][] = $location;
         }
     }

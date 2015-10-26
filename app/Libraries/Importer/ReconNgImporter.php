@@ -6,16 +6,15 @@
  * Time: 14:16
  */
 
-namespace App\Libraries\Import;
+namespace App\Libraries\Importer;
 
 
 use App\Libraries\Crawler\LinkedInCrawler;
 use App\Libraries\Crawler\XingCrawler;
 use App\Models\Person;
 use Nathanmac\Utilities\Parser\Facades\Parser;
-use Symfony\Component\DomCrawler\Link;
 
-class ReconNgImport extends Import
+class ReconNgImporter extends Importer
 {
 
     public $findings;

@@ -86,7 +86,7 @@
                 <li>Export results as KML-File</li>
                 <li>Delete the fourth line from the file. It should look like this: <code>&lt;name&gt;&lt;built-in function id&gt;.kml&lt;/name&gt;</code></li>
             </ul>
-            <h2>Foobar</h2>
+            <h3>Maltego</h3>
             <p>Lorem ipsum dolor sit amet ...</p>
         </div>
     </div>

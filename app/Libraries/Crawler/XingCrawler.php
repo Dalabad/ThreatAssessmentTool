@@ -8,30 +8,14 @@
 
 namespace App\Libraries\Crawler;
 
+use App\Libraries\Requests\CurlRequest;
 use App\Models\Person;
-use Faker\Provider\UserAgent;
 use Sunra\PhpSimple\HtmlDomParser;
 
 class XingCrawler
 {
     public static function crawl($url) {
-        $agent = UserAgent::chrome();
-
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($curl, CURLOPT_VERBOSE, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, $agent);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        $html = curl_exec($curl);
-
-        if (curl_error($curl))
-            die(curl_error($curl));
-
-        // Get the status code
-        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        curl_close($curl);
+        $html = CurlRequest::getHTML($url);
 
         return XingCrawler::analyze($html);
     }
