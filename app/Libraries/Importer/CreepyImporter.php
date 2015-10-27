@@ -9,7 +9,7 @@
 namespace App\Libraries\Importer;
 
 
-use App\Libraries\Converter\Coordinates;
+use App\Libraries\Converter\CoordinatesConverter;
 use App\Models\Location;
 use Nathanmac\Utilities\Parser\Facades\Parser;
 
@@ -39,7 +39,7 @@ class CreepyImporter extends Importer
             $location->setTimestamp( $placemark['name'] )
                 ->setCoordinates( $placemark['Point']['coordinates'] )
                 ->setDescription( $placemark['description'] )
-                ->setName( Coordinates::convertCoordinatesToName( $placemark['Point']['coordinates'] ));
+                ->setName( CoordinatesConverter::convertCoordinatesToName( $placemark['Point']['coordinates'] ));
             $this->findings['coordinates'][] = $location;
         }
     }

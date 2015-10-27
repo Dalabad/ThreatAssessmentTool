@@ -11,16 +11,19 @@ namespace App\Libraries\Crawler;
 use App\Libraries\Requests\CurlRequest;
 use App\Models\Person;
 use Sunra\PhpSimple\HtmlDomParser;
+use Nathanmac\Utilities\Parser\Facades\Parser;
 
 class XingCrawler
 {
     public static function crawl($url) {
         $html = CurlRequest::getHTML($url);
 
-        return XingCrawler::analyze($html);
+        $communicationChannels = CurlRequest::getHTML($url.'/load_upsell_data?_='.time());
+
+        return XingCrawler::analyze($html, $communicationChannels);
     }
 
-    private static function analyze($html) {
+    private static function analyze($html, $communicationChannels) {
         $dom = HtmlDomParser::str_get_html( $html );
         $person = new Person();
 
@@ -34,6 +37,15 @@ class XingCrawler
         $person->addAttribute("first-name", $firstName)
             ->addAttribute('last-name', $lastName)
             ->addAttribute('job-title', $jobTitle);
+
+        $coms = Parser::json($communicationChannels);
+
+        $person->addAttribute('phone', $coms['phone'])
+            ->addAttribute('address', $coms['address'])
+            ->addAttribute('email', $coms['email'])
+            ->addAttribute('messenger', $coms['messenger'])
+            ->addAttribute('fax', $coms['fax'])
+            ->addAttribute('web', $coms['web']);
 
         return $person;
     }

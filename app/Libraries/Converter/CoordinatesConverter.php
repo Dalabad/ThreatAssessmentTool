@@ -11,7 +11,7 @@ namespace App\Libraries\Converter;
 use App\Libraries\Requests\CurlRequest;
 use Nathanmac\Utilities\Parser\Facades\Parser;
 
-class Coordinates
+class CoordinatesConverter
 {
     public static function convertLongitudeLatitudeToName($longitude, $latitude) {
         $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&sensor=false";
@@ -31,7 +31,7 @@ class Coordinates
         $longitude = $coords[0];
         $latitude = $coords[1];
 
-        return Coordinates::convertLongitudeLatitudeToName($longitude, $latitude);
+        return CoordinatesConverter::convertLongitudeLatitudeToName($longitude, $latitude);
     }
 
 }
