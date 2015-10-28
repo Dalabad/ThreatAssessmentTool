@@ -21,7 +21,7 @@ class CreepyImporter extends Importer
 
     public function import($file)
     {
-        $this->findings["coordinates"] = [];
+        $this->findings['locations'] = [];
 
         $this->importedFile = file_get_contents($file);
 
@@ -40,7 +40,7 @@ class CreepyImporter extends Importer
                 ->setCoordinates( $placemark['Point']['coordinates'] )
                 ->setDescription( $placemark['description'] )
                 ->setName( CoordinatesConverter::convertCoordinatesToName( $placemark['Point']['coordinates'] ));
-            $this->findings['coordinates'][] = $location;
+            $this->findings['locations'][] = $location;
         }
     }
 }

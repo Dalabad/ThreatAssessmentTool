@@ -19,10 +19,10 @@ class MaltegoImporter extends Importer
 
     public function import($file)
     {
-        $this->findings["websites"]  = [];
-        $this->findings["profiles"]  = [];
-        $this->findings["emails"]    = [];
-        $this->findings["locations"] = [];
+        $this->_findings['websites']  = [];
+        $this->_findings['profiles']  = [];
+        $this->_findings['emails']    = [];
+        $this->_findings['locations'] = [];
 
         $this->importedFile = file_get_contents($file);
 
@@ -45,6 +45,10 @@ class MaltegoImporter extends Importer
                 case "maltego.Domain":
                     break;
                 case "maltego.EmailAddress":
+                    $email = "";
+                    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+                    }
                     break;
                 case "maltego.link.transform-link":
                     break;

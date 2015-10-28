@@ -2,6 +2,9 @@
  * Created by daniel on 20.10.15.
  */
 
+/**
+ * Tooltips
+ */
 $(function () {
     $("#inputCompanyName")
         .popover({
@@ -36,4 +39,11 @@ $(function () {
         .blur(function () {
             $(this).popover('hide');
         });
+});
+
+/**
+ * Tablesorter
+ */
+$(function(){
+    $("table.tablesorter").tablesorter();
 });

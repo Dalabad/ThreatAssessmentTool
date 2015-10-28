@@ -2,32 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\Crawler\LinkedInCrawler;
-use App\Libraries\Crawler\XingCrawler;
-use App\Libraries\Importer\MaltegoImporter;
-use App\Libraries\Importer\ReconNgImporter;
 use App\Libraries\Importer\CreepyImporter;
+use App\Libraries\Importer\HarvesterImporter;
+use App\Libraries\Importer\ReconNgImporter;
+use App\Libraries\Importer\XingImporter;
+use App\Libraries\Merger\Merger;
+use Illuminate\Support\Facades\Session;
 
 class ApplicationController extends Controller
 {
     public function index()
     {
-//        $xingCrawler = new XingCrawler();
-//        $linkedinCrawler = new LinkedInCrawler();
+        if(!Session::has('findings')) {
 
-//        $findings = $xingCrawler::crawl("https://www.xing.com/profile/Daniel_Schosser");
-//        $findings = $linkedinCrawler::crawl("https://de.linkedin.com/pub/daniel-schosser/b4/848/b33");
+            $reconNg = new ReconNgImporter();
+            $reconNgFindings = $reconNg->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/recon-ng/egym.json');
 
-        $importer = new CreepyImporter();
-        $findings = $importer->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/creepy/worldtravel.kml');
+            $harvester = new HarvesterImporter();
+            $harvesterFindings = $harvester->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/theharvester/egym.xml');
 
-        die('<pre>'.print_r($findings));
+            $creepy = new CreepyImporter();
+            $creepyFindings = $creepy->import('/home/daniel/Projects/University/ThreatAssessmentTool/storage/demo-files/creepy/worldtravel.kml');
+
+            $xing = new XingImporter();
+            $xingFindings = $xing->import('https://www.xing.com/companies/egymgmbh');
+
+            $merger = new Merger();
+            $merger->addFindings($harvesterFindings);
+            $merger->addFindings($creepyFindings);
+            $merger->addFindings($reconNgFindings);
+            $merger->addFindings($xingFindings);
+
+            Session::put('findings', $merger->getFindings());
+        }
+
         return view('app.dashboard');
-    }
-
-    public function result()
-    {
-        return view('app.result');
     }
 
     public function assessment()

@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Nathanmac\Utilities\Parser\ParserServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -197,6 +198,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Parser'    => Nathanmac\Utilities\Parser\Facades\Parser::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
     ],
 
