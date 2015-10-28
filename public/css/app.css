@@ -1,3 +1,44 @@
 #companyInformationForm .popover {
     width:200px;
 }
+
+/* Tablesorter */
+
+table.tablesorter {
+    background-color: #222;
+    margin:10px 0pt 15px;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    border: 1px solid #FFF;
+    color: #fff;
+    padding: 4px 10px;
+}
+table.tablesorter thead tr .header {
+    cursor: pointer;
+}
+table.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+    background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(/images/asc.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-position-y: 15px;
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(/images/desc.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-position-y: 15px;
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #000;
+}

@@ -22,9 +22,9 @@ class ReconNgImporter extends Importer
 
     public function import($file)
     {
-        $this->findings["websites"]  = [];
-        $this->findings["profiles"]  = [];
-        $this->findings["emails"]    = [];
+        $this->findings['websites']  = [];
+        $this->findings['profiles']  = [];
+        $this->findings['emails']    = [];
 
         $this->importedFile = file_get_contents($file);
 
@@ -57,7 +57,9 @@ class ReconNgImporter extends Importer
                     ->addAttribute('email', $contact['email']);
 
                 $this->findings["profiles"][] = $person;
-                $this->findings["emails"][] = $contact['email'];
+                if (filter_var($contact['email'], FILTER_VALIDATE_EMAIL)) {
+                    $this->findings["emails"][] = $contact['email'];
+                }
             }
         }
 

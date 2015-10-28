@@ -17,7 +17,6 @@ class XingCrawler
 {
     public static function crawl($url) {
         $html = CurlRequest::getHTML($url);
-
         $communicationChannels = CurlRequest::getHTML($url.'/load_upsell_data?_='.time());
 
         return XingCrawler::analyze($html, $communicationChannels);
@@ -27,25 +26,29 @@ class XingCrawler
         $dom = HtmlDomParser::str_get_html( $html );
         $person = new Person();
 
-        $fullName = $dom->find('h1.username', 0)->plaintext;
-        $explodedName = explode(' ', $fullName);
-        $firstName = $explodedName[0];
-        $lastName = $explodedName[1];
+        $fullName = $dom->find('h1.username', 0);
+        if(isset($fullName)) {
+            $explodedName = explode(' ', $fullName->plaintext);
+            $firstName = $explodedName[0];
+            $lastName = $explodedName[1];
 
-        $jobTitle = $dom->find('.job-info .job-title', 0)->plaintext;
+            $person->addAttribute("first-name", $firstName)
+                ->addAttribute('last-name', $lastName);
+        }
 
-        $person->addAttribute("first-name", $firstName)
-            ->addAttribute('last-name', $lastName)
-            ->addAttribute('job-title', $jobTitle);
+        $jobTitle = $dom->find('.job-info .job-title', 0);
+        if(isset($jobTitle)) {
+            $person->addAttribute('job-title', $jobTitle->plaintext);
+        }
 
         $coms = Parser::json($communicationChannels);
 
-        $person->addAttribute('phone', $coms['phone'])
-            ->addAttribute('address', $coms['address'])
-            ->addAttribute('email', $coms['email'])
-            ->addAttribute('messenger', $coms['messenger'])
-            ->addAttribute('fax', $coms['fax'])
-            ->addAttribute('web', $coms['web']);
+        $person->addAttribute('phone', $coms['phone'] ? "Available" : "-")
+            ->addAttribute('address', $coms['address'] ? "Available" : "-")
+            ->addAttribute('email', $coms['email'] ? "Available" : "-")
+            ->addAttribute('messenger', $coms['messenger'] ? "Available" : "-")
+            ->addAttribute('fax', $coms['fax'] ? "Available" : "-")
+            ->addAttribute('web', $coms['web'] ? "Available" : "-");
 
         return $person;
     }
