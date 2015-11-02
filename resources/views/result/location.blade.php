@@ -24,30 +24,47 @@
 
     @include('result.resultsNavigation', ['results' => $results])
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped tablesorter">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Coordinates</th>
-                    <th>Timestamp</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($results['locations'] as $location)
+@if(count($results))
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
                     <tr>
-                        <td>{{ $location->getName() }}</td>
-                        <td>{{ $location->getCoordinates() }}</td>
-                        <td>{{ $location->getTimestamp() }}</td>
-                        <td>{{ $location->getDescription() }}</td>
+                        <th>Name</th>
+                        <th>Coordinates</th>
+                        <th>Timestamp</th>
+                        <th>Description</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($results['locations'] as $location)
+                        <tr>
+                            <td>{{ $location->getName() }}</td>
+                            <td>{{ $location->getCoordinates() }}</td>
+                            <td>{{ $location->getTimestamp() }}</td>
+                            <td>{{ $location->getDescription() }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+@else
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                    <tr>
+                        There are no results yet. Please go to the Dashboard and add some information.
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+@endif
 @stop

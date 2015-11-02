@@ -9,6 +9,8 @@
 namespace App\Libraries\Merger;
 
 
+use Illuminate\Support\Facades\Session;
+
 class Merger
 {
     private $_findings;
@@ -19,10 +21,14 @@ class Merger
      */
     public function __construct()
     {
-        $this->_findings['websites']  = [];
-        $this->_findings['profiles']  = [];
-        $this->_findings['emails']    = [];
-        $this->_findings['locations'] = [];
+        if(!Session::has('findings')) {
+            $this->_findings['websites']  = [];
+            $this->_findings['profiles']  = [];
+            $this->_findings['emails']    = [];
+            $this->_findings['locations'] = [];
+        } else {
+            $this->_findings = Session::get('findings');
+        }
     }
 
 
@@ -36,6 +42,18 @@ class Merger
 
     public function addFindings($findings) {
         $this->_findings = array_merge_recursive($this->_findings, $findings);
+
+        $this->removeDuplicates();
+
+        Session::put('findings', $this->_findings);
         return $this;
+    }
+
+    public function removeDuplicates()
+    {
+        $this->_findings['websites'] = array_unique($this->_findings['websites']);
+        $this->_findings['profiles'] = array_unique($this->_findings['profiles']);
+        $this->_findings['emails'] = array_unique($this->_findings['emails']);
+        $this->_findings['locations'] = array_unique($this->_findings['locations']);
     }
 }

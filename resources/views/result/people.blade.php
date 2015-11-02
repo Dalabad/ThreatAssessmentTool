@@ -24,39 +24,56 @@
 
     @include('result.resultsNavigation', ['results' => $results])
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped tablesorter">
-                <thead>
-                <tr>
-                    @foreach($categories as $category)
-                        <th>{{ ucwords($category) }}</th>
-                    @endforeach
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($results['profiles'] as $person)
-                        <tr>
+@if(count($categories))
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                    <tr>
                         @foreach($categories as $category)
-                            @if(isset($person->getAttributes()[$category]))
-
-                                    @if($category == 'url' || $category == 'website')
-                                        <td>{!! Html::link($person->getAttributes()[$category], 'Link') !!}</td>
-                                    @else
-                                        <td>{{ $person->getAttributes()[$category] }}</td>
-                                    @endif
-
-                            @else
-                                <td>-</td>
-                            @endif
+                            <th>{{ ucwords($category) }}</th>
                         @endforeach
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($results['profiles'] as $person)
+                            <tr>
+                            @foreach($categories as $category)
+                                @if(isset($person->getAttributes()[$category]))
+
+                                        @if($category == 'url' || $category == 'website')
+                                            <td>{!! Html::link($person->getAttributes()[$category], 'Link') !!}</td>
+                                        @else
+                                            <td>{{ $person->getAttributes()[$category] }}</td>
+                                        @endif
+
+                                @else
+                                    <td>-</td>
+                                @endif
+                            @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-<!-- /.row -->
+    <!-- /.row -->
+@else
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                    <tr>
+                        There are no results yet. Please go to the Dashboard and add some information.
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+@endif
 @stop

@@ -18,4 +18,29 @@
         </div>
     </div>
     <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount of Employees</th>
+                        <th>Website</th>
+                        <th>Selected Attack Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $companyInformation['companyName'] }}</td>
+                            <td>{{ $companyInformation['companyEmployeeCount'] }}</td>
+                            <td>{{ $companyInformation['companyWebsite'] }}</td>
+                            <td>{{ $companyInformation['attackType'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @stop
