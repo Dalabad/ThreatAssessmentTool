@@ -35,11 +35,16 @@ class CreepyImporter extends Importer
         $array = Parser::xml($this->importedFile);
 
         foreach($array['Document']['Placemark'] as $placemark) {
+            $coordinates = $placemark['Point']['coordinates'];
+            $coords = explode(", ",$coordinates);
+            $latitude = $coords[1];
+            $longitude = $coords[0];
+
             $location = new Location();
             $location->setTimestamp( $placemark['name'] )
-                ->setCoordinates( $placemark['Point']['coordinates'] )
+                ->setCoordinates( $latitude.", ".$longitude )
                 ->setDescription( $placemark['description'] )
-                ->setName( CoordinatesConverter::convertCoordinatesToName( $placemark['Point']['coordinates'] ));
+                ->setName( CoordinatesConverter::convertLongitudeLatitudeToName($latitude, $longitude));
             $this->findings['locations'][] = $location;
         }
     }

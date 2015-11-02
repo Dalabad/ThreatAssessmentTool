@@ -1,3 +1,9 @@
+#map {
+    width: 500px;
+    height: 400px;
+    background-color: #CCC;
+}
+
 .popover {
     width:200px;
 }

@@ -59,9 +59,9 @@
                         <label for="selectAttackType" class="col-sm-2 control-label">Attack Type</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="attackType" id="selectAttackType">
-                                <option value="1">Phishing</option>
-                                <option value="2">Baiting</option>
-                                <option value="3">Impersonation</option>
+                                <option value="phishing">Phishing</option>
+                                <option value="baiting">Baiting</option>
+                                <option value="impersonation">Impersonation</option>
                                 <option value="4">Coming soon ...</option>
                                 <option value="5">Coming soon ...</option>
                             </select>
