@@ -39,6 +39,15 @@ $(function () {
         .blur(function () {
             $(this).popover('hide');
         });
+    $("#selectTool")
+        .popover({
+            trigger: 'focus',
+            title: 'Tool Name',
+            content: "Select the Tool which the file has been exported from. For any help on using the tools and exporting the results, please have a look at the Help-Section."
+        })
+        .blur(function () {
+            $(this).popover('hide');
+        });
 });
 
 /**

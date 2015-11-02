@@ -24,24 +24,41 @@
 
     @include('result.resultsNavigation', ['results' => $results])
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped tablesorter">
-                <thead>
-                <tr>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($results['emails'] as $mail)
+@if(count($results))
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
                     <tr>
-                        <td>{{ $mail }}</td>
+                        <th>Email</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($results['emails'] as $mail)
+                        <tr>
+                            <td>{{ $mail }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+@else
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                    <tr>
+                        There are no results yet. Please go to the Dashboard and add some information.
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+@endif
 @stop

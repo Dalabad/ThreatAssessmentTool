@@ -27,7 +27,8 @@ class XingImporter extends Importer
 
         $website = CurlRequest::getHTML($url);
         $dom = HtmlDomParser::str_get_html( $website );
-        $this->companyName = $dom->find('h1.organization-name', 0)->plaintext;
+        $organizationName = $dom->find('h1.organization-name', 0);
+        $this->companyName = $organizationName->plaintext;
 
         $this->importedFile = $this->gatherHtmlCode($url);
 

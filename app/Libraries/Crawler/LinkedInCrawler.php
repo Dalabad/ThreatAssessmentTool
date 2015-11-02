@@ -22,8 +22,20 @@ class LinkedInCrawler
     }
 
     private static function analyze($html) {
-        $dom = HtmlDomParser::str_get_html( $html );
+        $maxTriesPerPerson = 5;
+
+        $dom = null;
         $person = new Person();
+        $tries = 0;
+
+        while(strlen($dom) < 10 && $tries < $maxTriesPerPerson) {
+            $dom = HtmlDomParser::str_get_html( $html );
+            $tries++;
+        }
+
+        if(strlen($dom) < 10)
+            return $person;
+
 
         $name = $dom->find('span.full-name', 0);
         if(isset($name)) {
@@ -58,12 +70,12 @@ class LinkedInCrawler
         }
 
 
-//        $site = $dom->find('#overview-summary-websites a', 0);
-//        if(isset($site)) {
-//            $site = $dom->find('#overview-summary-websites a', 0);
-//            $website = $site->href;
-//            $person->addAttribute('website', $website);
-//        }
+    //        $site = $dom->find('#overview-summary-websites a', 0);
+    //        if(isset($site)) {
+    //            $site = $dom->find('#overview-summary-websites a', 0);
+    //            $website = $site->href;
+    //            $person->addAttribute('website', $website);
+    //        }
 
         return $person;
     }

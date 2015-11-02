@@ -15,14 +15,15 @@ use Nathanmac\Utilities\Parser\Facades\Parser;
 
 class XingCrawler
 {
+
     public static function crawl($url) {
         $html = CurlRequest::getHTML($url);
         $communicationChannels = CurlRequest::getHTML($url.'/load_upsell_data?_='.time());
 
-        return XingCrawler::analyze($html, $communicationChannels);
+        return XingCrawler::analyze($html, $communicationChannels, $url);
     }
 
-    private static function analyze($html, $communicationChannels) {
+    private static function analyze($html, $communicationChannels, $url) {
         $dom = HtmlDomParser::str_get_html( $html );
         $person = new Person();
 
@@ -48,7 +49,9 @@ class XingCrawler
             ->addAttribute('email', $coms['email'] ? "Available" : "-")
             ->addAttribute('messenger', $coms['messenger'] ? "Available" : "-")
             ->addAttribute('fax', $coms['fax'] ? "Available" : "-")
-            ->addAttribute('web', $coms['web'] ? "Available" : "-");
+            ->addAttribute('web', $coms['web'] ? "Available" : "-")
+            ->addAttribute('resource', "xing")
+            ->addAttribute('url', $url);
 
         return $person;
     }
