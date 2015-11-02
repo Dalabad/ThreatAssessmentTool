@@ -25,6 +25,20 @@
     @include('result.resultsNavigation', ['results' => $results])
 
 @if(count($results))
+    <div id="map" style="width: 800px; height: 500px;"></div>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#map").googleMap();
+
+            @foreach($results['locations'] as $location)
+                $("#map").addMarker({
+                    coords: [{{ $location->getCoordinates() }}]
+                });
+            @endforeach
+        })
+    </script>
+
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">

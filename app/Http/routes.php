@@ -15,6 +15,7 @@ Route::get('/',                 'ApplicationController@index');
 Route::get('/assessment',       'ApplicationController@assessment');
 Route::get('/help',             'ApplicationController@help');
 Route::get('/contact',          'ApplicationController@contact');
+Route::get('/pdf',              'ApplicationController@pdf');
 
 Route::get('/result',           'ResultController@people');
 Route::get('/result/people',    'ResultController@people');

@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "sunra/php-simple-html-dom-parser": "v1.5.0",
         "Nathanmac/Parser": "3.*",
-        "laravelcollective/html": "~5.0"
+        "laravelcollective/html": "~5.0",
+        "barryvdh/laravel-snappy": "0.2.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
