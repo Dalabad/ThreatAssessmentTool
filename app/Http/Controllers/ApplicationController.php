@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\Mapper\AttackTypes2Characteristics;
+use App\Libraries\ThreatAssessment\Calculator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Knp\Snappy\Pdf;
 
 class ApplicationController extends Controller
 {
@@ -18,8 +18,10 @@ class ApplicationController extends Controller
         $findings           = Session::get('findings');
 
         $characteristics = [];
-        if(isset($companyInformation['attackType']))
-            $characteristics = AttackTypes2Characteristics::getCharacteristics($companyInformation['attackType']);
+        if(isset($companyInformation['attackType'])) {
+            $calculator = new Calculator($companyInformation, $findings);
+            $characteristics = $calculator->calculateThreat($companyInformation['attackType']);
+        }
 
         return view('app.dashboard', compact('companyInformation', 'findings', 'notification', 'characteristics'));
     }
@@ -27,7 +29,15 @@ class ApplicationController extends Controller
     public function assessment()
     {
         $companyInformation = Session::get('companyInformation');
-        return view('app.assessment', compact('companyInformation', 'percentageFindings'));
+        $findings = Session::get('findings');
+
+        $characteristics = [];
+        if(isset($companyInformation['attackType'])) {
+            $calculator = new Calculator($companyInformation, $findings);
+            $characteristics = $calculator->calculateThreat($companyInformation['attackType']);
+        }
+
+        return view('app.assessment', compact('companyInformation', 'findings', 'characteristics'));
     }
 
     public function help()
@@ -46,8 +56,10 @@ class ApplicationController extends Controller
         $findings = Session::get('findings');
 
         $characteristics = [];
-        if(isset($data['attackType']))
-            $characteristics = AttackTypes2Characteristics::getCharacteristics($data['attackType']);
+        if(isset($data['attackType'])) {
+            $calculator = new Calculator($data, $findings);
+            $characteristics = $calculator->calculateThreat($data['attackType']);
+        }
 
         $profilesArray = array_chunk($findings['profiles'], 5);
         $emailsArray = array_chunk($findings['emails'], 30);
