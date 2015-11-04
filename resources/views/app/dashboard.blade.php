@@ -132,8 +132,40 @@
     </div>
     <!-- /.row -->
 
+    @if(count($companyInformation))
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <i class="fa fa-info"></i> Characteristics for {{ ucwords($companyInformation['attackType']) }} Attacks
+                    </div>
+                    <div class="panel-body">
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($characteristics as $characteristic)
+                                    <tr>
+                                        <td>{{ $characteristic['title'] }}</td>
+                                        <td>{{ $characteristic['description'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    @endif
+
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <i class="fa fa-info"></i> Information
@@ -147,7 +179,7 @@
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <i class="fa fa-info"></i> Reset all information
