@@ -61,7 +61,10 @@ class ApplicationController extends Controller
             $characteristics = $calculator->calculateThreat($data['attackType']);
         }
 
-        $profilesArray = array_chunk($findings['profiles'], 5);
+        $profiles = $findings['profiles'];
+        $profilesArray = array_chunk($profiles, 4)[0];
+        $profilesArray = array_merge([$profilesArray], array_chunk(array_splice($profiles, 4), 5));
+
         $emailsArray = array_chunk($findings['emails'], 30);
         $websitesArray = array_chunk($findings['websites'], 30);
         $locationsArray = array_chunk($findings['locations'], 16);
