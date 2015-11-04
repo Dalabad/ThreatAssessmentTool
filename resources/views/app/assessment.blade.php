@@ -41,6 +41,39 @@
                     </tbody>
                 </table>
             </div>
+
+            <canvas id="characteristicsChart" class="chart" width="800" height="400"></canvas>
         </div>
     </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        Chart.defaults.global.animation = false;
+        var barData = {
+            labels: [
+
+                @foreach($characteristics as $characteristic)
+                    "{{ $characteristic['title'] }}",
+                @endforeach
+            ],
+            datasets: [
+                {
+                    fillColor: "rgba(93,165,218,0.75)",
+                    strokeColor: "rgba(77,77,77,0.3)",
+                    highlightFill: "rgba(93,165,218,0.75)",
+                    highlightStroke: "rgba(93,165,218,1)",
+                    data: [
+                        @foreach($characteristics as $characteristic)
+                        {{ $characteristic['value'] }},
+                        @endforeach
+                    ]
+                }
+            ]
+        };
+        var ctxBar = $('#characteristicsChart').get(0).getContext("2d");
+        var myBarChart = new Chart(ctxBar).Bar(barData);
+    });
+</script>
 @stop
