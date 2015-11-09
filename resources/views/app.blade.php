@@ -32,14 +32,8 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery.tablesorter.min.js"></script>
     <script src="/js/app.js"></script>
-    <script src="https://rawgithub.com/Tilotiti/jQuery-Google-Map/master/jquery.googlemap.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js"></script>
-
-    <script type="text/javascript">
-        google.load("maps", "3.4", {
-            other_params: "sensor=false&language=fr"
-        });
-    </script>
+    <script src="https://hpneo.github.io/gmaps/gmaps.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>

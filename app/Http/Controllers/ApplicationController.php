@@ -19,8 +19,7 @@ class ApplicationController extends Controller
 
         $characteristics = [];
         if(isset($companyInformation['attackType'])) {
-            $calculator = new Calculator($companyInformation, $findings);
-            $characteristics = $calculator->calculateThreat($companyInformation['attackType']);
+            $characteristics = AttackTypes2Characteristics::getCharacteristics($companyInformation['attackType']);
         }
 
         return view('app.dashboard', compact('companyInformation', 'findings', 'notification', 'characteristics'));
@@ -65,9 +64,12 @@ class ApplicationController extends Controller
         $profilesArray = array_chunk($profiles, 4)[0];
         $profilesArray = array_merge([$profilesArray], array_chunk(array_splice($profiles, 4), 5));
 
+        $locations = $findings['locations'];
+        $locationsArray = array_chunk($locations, 9)[0];
+        $locationsArray = array_merge([$locationsArray], array_chunk(array_splice($locations, 9), 16));
+
         $emailsArray = array_chunk($findings['emails'], 30);
         $websitesArray = array_chunk($findings['websites'], 30);
-        $locationsArray = array_chunk($findings['locations'], 16);
 
         $overallFindingsAmount = count($findings['profiles'])+count($findings['emails'])+count($findings['websites'])+count($findings['locations']);
         $percentageFindings = [
