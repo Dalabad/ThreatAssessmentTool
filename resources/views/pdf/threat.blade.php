@@ -22,6 +22,8 @@
     {{--<script src="https://leaverou.github.io/conic-gradient/conic-gradient.js"></script>--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://hpneo.github.io/gmaps/gmaps.js"></script>
 
 
     <!-- Custom CSS -->
@@ -111,7 +113,30 @@
             var ctxPie = $('#overviewChart').get(0).getContext("2d");
             var ctxBar = $('#characteristicsChart').get(0).getContext("2d");
             var myPieChart = new Chart(ctxPie).Pie(pieData);
-            var myBarChart = new Chart(ctxBar).Bar(barData);
+            var myBarChart = new Chart(ctxBar).Bar(barData, {
+                scaleOverride : true,
+                scaleSteps : 20,
+                scaleStepWidth : 5,
+                scaleStartValue : 0
+            });
+
+            @if(count($locationsArray))
+                        url = GMaps.staticMapURL({
+                        size: [800, 500],
+                        zoom: false,
+                        markers: [
+                            @for ($i = 0; $i < count($locationsArray); $i++)
+                                @foreach($locationsArray[$i] as $location)
+                                            {
+                                        lat: {{ explode(', ', $location->getCoordinates())[0] }},
+                                        lng: {{ explode(', ', $location->getCoordinates())[1] }}
+                                    },
+                                @endforeach
+                            @endfor
+                        ]
+                    });
+                $('<img/>').attr('src', url).appendTo('#map');
+            @endif
         });
     </script>
 </head>
@@ -416,6 +441,8 @@
             <h3 class="panel-title">Locations</h3>
         </div>
         <div class="panel-body">
+
+            <div id="map"></div>
 
             @if(count($locationsArray))
                 @for ($i = 0; $i < count($locationsArray); $i++)

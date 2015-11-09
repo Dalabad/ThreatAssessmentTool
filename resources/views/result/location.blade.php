@@ -29,13 +29,24 @@
 
     <script type="text/javascript">
         $(function() {
-            $("#map").googleMap();
+
+            var map = new GMaps({
+                el: '#map',
+                lat: -12.043333,
+                lng: -77.028333
+            });
 
             @foreach($results['locations'] as $location)
-                $("#map").addMarker({
-                    coords: [{{ $location->getCoordinates() }}]
-                });
+                map.addMarker({
+                lat: {{ explode(', ', $location->getCoordinates())[0] }},
+                lng: {{ explode(', ', $location->getCoordinates())[1] }},
+                infoWindow: {
+                    content: '{{ trim($location->getDescription()) }}'
+                }
+            });
             @endforeach
+
+            map.fitZoom();
         })
     </script>
 

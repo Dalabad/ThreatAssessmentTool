@@ -73,7 +73,12 @@
             ]
         };
         var ctxBar = $('#characteristicsChart').get(0).getContext("2d");
-        var myBarChart = new Chart(ctxBar).Bar(barData);
+        var myBarChart = new Chart(ctxBar).Bar(barData, {
+            scaleOverride : true,
+            scaleSteps : 20,
+            scaleStepWidth : 5,
+            scaleStartValue : 0
+        });
     });
 </script>
 @stop
