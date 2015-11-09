@@ -61,6 +61,7 @@ class ApplicationController extends Controller
         }
 
         $profiles = $findings['profiles'];
+        usort($profiles, array($this, 'cmpProfiles'));
         $profilesArray = array_chunk($profiles, 4)[0];
         $profilesArray = array_merge([$profilesArray], array_chunk(array_splice($profiles, 4), 5));
 
@@ -84,5 +85,18 @@ class ApplicationController extends Controller
         $pdf = App::make('snappy.pdf.wrapper');
         $pdf->loadView('pdf.threat', compact('data', 'locationsArray', 'profilesArray', 'emailsArray', 'websitesArray', 'findings', 'dateAndTime', 'percentageFindings', 'characteristics'));
         return $pdf->stream();
+    }
+
+    private function cmpProfiles($a, $b) {
+        if(!isset($a->getAttributes()['last-name']))
+            return 1;
+        if(!isset($b->getAttributes()['last-name']))
+            return -1;
+
+        if ($a->getAttributes()['last-name'] == $b->getAttributes()['last-name']) {
+            return 0;
+        }
+
+        return ($a->getAttributes()['last-name'] < $b->getAttributes()['last-name']) ? -1 : 1;
     }
 }
