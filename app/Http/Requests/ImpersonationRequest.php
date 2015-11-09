@@ -1,6 +1,6 @@
 <?php namespace App\Http\Requests;
 
-class BaitingRequest extends Request {
+class ImpersonationRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -20,10 +20,10 @@ class BaitingRequest extends Request {
 	public function rules()
 	{
 		return [
-			'inputCompanySecurity' => 'required|integer',
-            'inputCompanySoftware' => 'required|integer',
-            'inputCompanyNetwork' => 'required|integer',
-            'inputCompanyLocation' => 'required|integer'
+            'inputCompanySecurity' => 'required|integer',
+            'inputCompanyLocation' => 'required|integer',
+            'inputSocialAccounts' => 'required|integer',
+            'inputCompanyLingo' => 'required|integer'
 		];
 	}
 

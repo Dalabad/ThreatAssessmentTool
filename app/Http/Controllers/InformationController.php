@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BaitingRequest;
 use App\Http\Requests\CompanyInformationRequest;
+use App\Http\Requests\ImpersonationRequest;
 use App\Http\Requests\PhishingRequest;
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests\XingRequest;
@@ -68,8 +69,10 @@ class InformationController extends Controller
     public function impersonation(ImpersonationRequest $request)
     {
         $companyInformation = [
-//            'companyLocation' => $request->input('companyLocation'),
-//            'companyLingo' => $request->input('companyLingo')
+            'companyLocation' => $request->input('inputCompanyLocation'),
+            'companyLingo' => $request->input('inputCompanyLingo'),
+            'socialAccounts' => $request->input('inputSocialAccounts'),
+            'companySecurity' => $request->input('inputCompanySecurity')
         ];
 
         $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
