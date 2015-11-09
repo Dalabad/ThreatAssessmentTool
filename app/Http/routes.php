@@ -28,3 +28,6 @@ Route::get('/information/reset',                'InformationController@reset');
 Route::post('/information/upload',              'InformationController@upload');
 Route::post('/information/xing',                'InformationController@xing');
 Route::post('/information/companyinformation',  'InformationController@companyInformation');
+Route::post('/information/phishing',            'InformationController@phishing');
+Route::post('/information/baiting',             'InformationController@baiting');
+Route::post('/information/impersonation',       'InformationController@impersonation');

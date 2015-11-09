@@ -29,8 +29,8 @@
                         <i class="fa fa-envelope-o fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{ count($results['emails']) }}</div>
-                        <div>Mail Addresses</div>
+                        <div class="huge">{{ $mailCount }}</div>
+                        <div>E-Mail Addresses</div>
                     </div>
                 </div>
             </div>

@@ -45,7 +45,7 @@
                                         @if($category == 'url' || $category == 'website')
                                             <td>{!! Html::link($person->getAttributes()[$category], 'Link') !!}</td>
                                         @else
-                                            <td>{{ $person->getAttributes()[$category] }}</td>
+                                            <td>{{ ucwords($person->getAttributes()[$category]) }}</td>
                                         @endif
 
                                 @else

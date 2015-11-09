@@ -20,7 +20,7 @@ class XingCrawler
         $html = CurlRequest::getHTML($url);
         $communicationChannels = CurlRequest::getHTML($url.'/load_upsell_data?_='.time());
 
-        return XingCrawler::analyze($html, $communicationChannels, $url);
+        return self::analyze($html, $communicationChannels, $url);
     }
 
     private static function analyze($html, $communicationChannels, $url) {
