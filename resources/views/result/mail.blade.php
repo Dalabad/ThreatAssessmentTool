@@ -31,6 +31,25 @@
                 <table class="table table-bordered table-hover table-striped tablesorter">
                     <thead>
                     <tr>
+                        <th>Notification</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>This page will only list explicit E-Mail Addresses that have been collected. If for example Xing profiles contain an E-Mail Address then those are "available" for the attacker, but not listed here.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                    <tr>
                         <th>Email</th>
                     </tr>
                     </thead>

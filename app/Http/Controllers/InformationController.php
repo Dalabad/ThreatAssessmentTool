@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BaitingRequest;
 use App\Http\Requests\CompanyInformationRequest;
+use App\Http\Requests\PhishingRequest;
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests\XingRequest;
 use App\Libraries\Crawler\XingCrawler;
@@ -26,6 +28,51 @@ class InformationController extends Controller
             'companyWebsite' => $request->input('companyWebsite'),
             'attackType' => $request->input('attackType'),
         ];
+        Session::put('companyInformation', $companyInformation);
+        Session::put('notification', 'Company Information has been saved!');
+
+        return redirect('/');
+    }
+
+    public function phishing(PhishingRequest $request)
+    {
+        $companyInformation = [
+            'companyLocation'   => $request->input('inputCompanyLocation'),
+            'companyLingo'      => $request->input('inputCompanyLingo'),
+            'socialAccounts'    => $request->input('inputSocialAccounts')
+        ];
+
+        $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
+        Session::put('companyInformation', $companyInformation);
+        Session::put('notification', 'Information has been saved!');
+
+        return redirect('/');
+    }
+
+    public function baiting(BaitingRequest $request)
+    {
+        $companyInformation = [
+            'companyLocation' => $request->input('inputCompanyLocation'),
+            'companySoftware' => $request->input('inputCompanySoftware'),
+            'companyNetwork' => $request->input('inputCompanyNetwork'),
+            'companySecurity' => $request->input('inputCompanySecurity')
+        ];
+
+        $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
+        Session::put('companyInformation', $companyInformation);
+        Session::put('notification', 'Company Information has been saved!');
+
+        return redirect('/');
+    }
+
+    public function impersonation(ImpersonationRequest $request)
+    {
+        $companyInformation = [
+//            'companyLocation' => $request->input('companyLocation'),
+//            'companyLingo' => $request->input('companyLingo')
+        ];
+
+        $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
         Session::put('companyInformation', $companyInformation);
         Session::put('notification', 'Company Information has been saved!');
 

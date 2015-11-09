@@ -17,6 +17,8 @@ class ApplicationController extends Controller
         $companyInformation = Session::get('companyInformation');
         $findings           = Session::get('findings');
 
+//        dd($companyInformation);
+
         $characteristics = [];
         if(isset($companyInformation['attackType'])) {
             $characteristics = AttackTypes2Characteristics::getCharacteristics($companyInformation['attackType']);

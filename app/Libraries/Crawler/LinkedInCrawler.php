@@ -18,26 +18,19 @@ class LinkedInCrawler
 {
     public static function crawl($url) {
         $html = CurlRequest::getHTML($url);
-        return LinkedInCrawler::analyze($html);
+        return self::analyze($html);
     }
 
     private static function analyze($html) {
         $maxTriesPerPerson = 5;
 
-        $dom = null;
         $person = new Person();
-        $tries = 0;
-
-        while(strlen($dom) < 10 && $tries < $maxTriesPerPerson) {
-            $dom = HtmlDomParser::str_get_html( $html );
-            $tries++;
-        }
+        $dom = HtmlDomParser::str_get_html( $html );
 
         if(strlen($dom) < 10)
             return $person;
 
-
-        $name = $dom->find('span.full-name', 0);
+        $name = $dom->find('h1#name', 0);
         if(isset($name)) {
             $fullName = $name->plaintext;
             $explodedName = explode(' ', $fullName);
@@ -48,7 +41,7 @@ class LinkedInCrawler
                 ->addAttribute('last-name', $lastName);
         }
 
-        $jobTitleAndCompany = $dom->find('#headline .title', 0);
+        $jobTitleAndCompany = $dom->find('p.title', 0);
         if(isset($jobTitleAndCompany)) {
             $explodedTitle = preg_split( "/ (@|at|bij|bei) /", $jobTitleAndCompany->plaintext );
             $jobTitle = $explodedTitle[0];
@@ -59,7 +52,7 @@ class LinkedInCrawler
             $person->addAttribute('job-title', $jobTitle);
         }
 
-        $location = $dom->find('#location .locality', 0);
+        $location = $dom->find('span.locality', 0);
         if(isset($location)) {
             $person->addAttribute('location', $location->plaintext);
         }
@@ -68,14 +61,6 @@ class LinkedInCrawler
         if(isset($industry)) {
             $person->addAttribute('industry', $industry->plaintext);
         }
-
-
-    //        $site = $dom->find('#overview-summary-websites a', 0);
-    //        if(isset($site)) {
-    //            $site = $dom->find('#overview-summary-websites a', 0);
-    //            $website = $site->href;
-    //            $person->addAttribute('website', $website);
-    //        }
 
         return $person;
     }

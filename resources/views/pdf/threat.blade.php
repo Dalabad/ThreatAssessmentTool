@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                     <td>Employee Count</td>
-                    <td>{{ $data['companyEmployeeCount'] }}</td>
+                    <td>{{ number_format($data['companyEmployeeCount']) }}</td>
                 </tr>
                 <tr>
                     <td>Website</td>
@@ -377,6 +377,8 @@
             <h3 class="panel-title">E-Mail Addresses</h3>
         </div>
         <div class="panel-body">
+
+            This page will only list explicit E-Mail Addresses that have been collected. If for example Xing profiles contain an E-Mail Address then those are "available" for the attacker, but not listed here.
             @if(count($emailsArray))
                 @for ($i = 0; $i < count($emailsArray); $i++)
                     <table class="table table-striped">
@@ -442,7 +444,7 @@
         </div>
         <div class="panel-body">
 
-            <div id="map"></div>
+            <div style="text-align: center;"><div id="map"></div></div>
 
             @if(count($locationsArray))
                 @for ($i = 0; $i < count($locationsArray); $i++)

@@ -34,9 +34,9 @@
                     <tbody>
                         <tr>
                             <td>{{ $companyInformation['companyName'] }}</td>
-                            <td>{{ $companyInformation['companyEmployeeCount'] }}</td>
+                            <td>{{ number_format($companyInformation['companyEmployeeCount']) }}</td>
                             <td>{{ $companyInformation['companyWebsite'] }}</td>
-                            <td>{{ $companyInformation['attackType'] }}</td>
+                            <td>{{ ucwords($companyInformation['attackType']) }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -45,14 +45,20 @@ class Calculator
                         $counter++;
                     }
                 }
-                return $this->_companyInformation['companyEmployeeCount']/100*$counter;
+                return 100/$this->_companyInformation['companyEmployeeCount']*$counter;
             case 'private_locations':
             case 'company_locations':
-                return count($this->_findings['locations']);
+                if(isset($this->_companyInformation['companyLocation']))
+                    return min(100, number_format($this->_companyInformation['companyLocation']*20,2));
+                else
+                    return 0;
             case 'friends':
-                return 0; //TODO: calculate
+                if(isset($this->_companyInformation['socialAccounts']))
+                    return min(100, $this->_companyInformation['socialAccounts']);
+                else
+                    return 0;
             case 'personal_information':
-                return $this->_companyInformation['companyEmployeeCount']/100*count($this->_findings['profiles']);
+                return number_format(100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']),2);
             case 'email':
                 $counter = 0;
                 foreach($this->_findings['profiles'] as $profile) {
@@ -61,7 +67,7 @@ class Calculator
                         $counter++;
                     }
                 }
-                return $this->_companyInformation['companyEmployeeCount']/100*(count($this->_findings['emails'])+$counter);
+                return number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['emails'])+$counter),2);
             case 'messenger':
                 $counter = 0;
                 foreach($this->_findings['profiles'] as $profile) {
@@ -70,23 +76,42 @@ class Calculator
                         $counter++;
                     }
                 }
-                return $this->_companyInformation['companyEmployeeCount']/100*$counter;
+                return number_format(100/$this->_companyInformation['companyEmployeeCount']*$counter, 2);
             case 'lingo':
-                return 0; //TODO: calculate
+                if(isset($this->_companyInformation['companyLingo']))
+                    return min(100, number_format($this->_companyInformation['companyLingo']*33,2));
+                else
+                    return 0;
             case 'websites':
-                return count($this->_findings['websites']);
+                return min(100, number_format(count($this->_findings['websites'])*5,2));
             case 'security_measure':
-                return 0; //TODO: calculate
+                if(isset($this->_companyInformation['companySecurity']))
+                    return $this->_companyInformation['companySecurity'];
+                else
+                    return 0;
             case 'software':
-                return 0; //TODO: calculate
+                if(isset($this->_companyInformation['companySoftware']))
+                    return $this->_companyInformation['companySoftware'];
+                else
+                    return 0;
             case 'network':
-                return 0; //TODO: calculate
+                if(isset($this->_companyInformation['companyNetwork']))
+                    return $this->_companyInformation['companyNetwork'];
+                else
+                    return 0;
             case 'organization':
-                return $this->_companyInformation['companyEmployeeCount']/100*count($this->_findings['profiles']);
+                $counter = 0;
+                foreach($this->_findings['profiles'] as $profile) {
+                    $attr = $profile->getAttributes();
+                    if(isset($attr['job-title'])) {
+                        $counter++;
+                    }
+                }
+                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*$counter,2));
             case 'special_knowledge':
-                return $this->_companyInformation['companyEmployeeCount']/100*count($this->_findings['profiles']);
+                return number_format(100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']),2);
             case 'new_employee':
-                return $this->_companyInformation['companyEmployeeCount']/100*count($this->_findings['profiles']);
+                return number_format(100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']),2);
             default:
                 return 0;
         }

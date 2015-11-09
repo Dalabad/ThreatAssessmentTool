@@ -21,6 +21,7 @@ class CurlRequest
         curl_setopt($curl, CURLOPT_VERBOSE, true);
         curl_setopt($curl, CURLOPT_USERAGENT, $agent);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 
         $html = curl_exec($curl);
 
