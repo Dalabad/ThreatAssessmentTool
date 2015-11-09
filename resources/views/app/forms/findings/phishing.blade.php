@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post" id="findingsPhishing" action="{{ url('/information/phishing') }}" enctype="multipart/form-data">
+<form class="form-horizontal" method="post" id="findingsPhishing" action="{{ url('/information/phishing') }}">
     {!! Form::token() !!}
     <div class="form-group">
         <div class="col-sm-2"></div>

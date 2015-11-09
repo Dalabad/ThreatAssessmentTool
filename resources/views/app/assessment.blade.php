@@ -42,7 +42,7 @@
                 </table>
             </div>
 
-            <canvas id="characteristicsChart" class="chart" width="800" height="400"></canvas>
+            <canvas id="characteristicsChart" class="chart" width="800" height="600"></canvas>
         </div>
     </div>
 
