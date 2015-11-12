@@ -7,6 +7,7 @@ use App\Libraries\ThreatAssessment\Calculator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Nathanmac\Utilities\Parser\Facades\Parser;
 
 class ApplicationController extends Controller
 {
@@ -16,8 +17,6 @@ class ApplicationController extends Controller
 
         $companyInformation = Session::get('companyInformation');
         $findings           = Session::get('findings');
-
-//        dd($companyInformation);
 
         $characteristics = [];
         if(isset($companyInformation['attackType'])) {
