@@ -18,6 +18,12 @@ class MaltegoImporter extends Importer
     public $_findings;
     private $_importedFile;
 
+    /**
+     * Import and then analyze a file from maltego
+     *
+     * @param \App\Libraries\Importer\Exported $file
+     * @return mixed
+     */
     public function import($file)
     {
         $this->_findings['websites']  = [];
@@ -46,6 +52,10 @@ class MaltegoImporter extends Importer
         return $this->_findings;
     }
 
+    /**
+     * Analyze the files content for relevant information.
+     * Adds the findings to the collection
+     */
     protected function analyze()
     {
         foreach($this->_importedFile['graph']['node'] as $node) {

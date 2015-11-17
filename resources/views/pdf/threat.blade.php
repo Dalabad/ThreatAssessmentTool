@@ -24,6 +24,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="https://hpneo.github.io/gmaps/gmaps.js"></script>
+    <script src="https://cdn.rawgit.com/toorshia/justgage/master/raphael-2.1.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/toorshia/justgage/master/justgage.js"></script>
 
 
     <!-- Custom CSS -->
@@ -137,6 +139,15 @@
                     });
                 $('<img/>').attr('src', url).appendTo('#map');
             @endif
+
+            var g = new JustGage({
+                    id: "gauge",
+                    value: "{{ $threatValue }}",
+                    min: 0,
+                    max: 100,
+                    title: "Threat Level",
+                    startAnimationTime: 0
+                });
         });
     </script>
 </head>
@@ -182,6 +193,31 @@
 
         </div>
     </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Threat Level</h3>
+        </div>
+        <div class="panel-body">
+
+            <div id="gauge" style="width: 400px; height: 300px;"></div>
+            <div>
+                @if($threatValue >= 75)
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered very high.</p>
+                @elseif($threatValue >= 50)
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered high.</p>
+                @elseif($threatValue >= 25)
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered medium.</p>
+                @elseif($threatValue >= 0)
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered low.</p>
+                @endif
+                <p>Please keep in mind, that the value of information can be significantly different then the amount of gathered information. For a social engineer it can be good enough to have one single information which helps getting access. On the other hand the social engineer might not be able to access the information with hundreds of information. It all depends on how good the information is and how easy a target can be fooled.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="page-break"></div>
 
     <div class="panel panel-primary">
         <div class="panel-heading">

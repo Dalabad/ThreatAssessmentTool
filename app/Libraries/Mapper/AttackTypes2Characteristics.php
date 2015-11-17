@@ -14,6 +14,12 @@ use App\Libraries\Description\CharacteristicDescription;
 class AttackTypes2Characteristics
 {
 
+    /**
+     * Returns relevant characteristics for a given attack type
+     *
+     * @param $attackType
+     * @return array
+     */
     public static function getCharacteristics($attackType) {
         switch($attackType) {
             case 'phishing':

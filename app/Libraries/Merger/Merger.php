@@ -33,6 +33,8 @@ class Merger
 
 
     /**
+     * Returns the findings
+     *
      * @return mixed
      */
     public function getFindings()
@@ -40,6 +42,12 @@ class Merger
         return $this->_findings;
     }
 
+    /**
+     * Add new findings to the collection
+     *
+     * @param $findings
+     * @return $this
+     */
     public function addFindings($findings) {
         $this->_findings = array_merge_recursive($this->_findings, $findings);
 
@@ -49,6 +57,9 @@ class Merger
         return $this;
     }
 
+    /**
+     * Remove all duplicates within the findings
+     */
     public function removeDuplicates()
     {
         $this->_findings['websites'] = array_unique($this->_findings['websites']);

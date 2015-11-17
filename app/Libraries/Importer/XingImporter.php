@@ -21,6 +21,12 @@ class XingImporter extends Importer
     private $importedFile;
     private $companyName;
 
+    /**
+     * Import Profiles from a given xing url
+     *
+     * @param Exported $url
+     * @return mixed
+     */
     public function import($url)
     {
         $this->findings['profiles']  = [];
@@ -38,6 +44,15 @@ class XingImporter extends Importer
         return $this->findings;
     }
 
+    /**
+     * Generate the html code to include all employees
+     *
+     * NOTE: Limited to 1000 per Letter by the code, to avoid
+     * very long waiting times
+     *
+     * @param $mainUrl
+     * @return string
+     */
     protected function gatherHtmlCode($mainUrl) {
         $letters = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
         $sourceCode = "";
@@ -54,6 +69,9 @@ class XingImporter extends Importer
         return $sourceCode;
     }
 
+    /**
+     * Analyze the html code for relevant information
+     */
     protected function analyze() {
         $dom = HtmlDomParser::str_get_html( $this->importedFile );
         foreach($dom->find('a.user-name-link') as $element) {
@@ -67,6 +85,10 @@ class XingImporter extends Importer
         }
     }
 
+    /**
+     * Analyze all profiles and add the information
+     * to the findings
+     */
     protected function analyzeProfiles()
     {
         foreach($this->findings['profiles'] as $index => $profile) {

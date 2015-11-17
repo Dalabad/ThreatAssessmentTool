@@ -16,14 +16,25 @@ use Sunra\PhpSimple\HtmlDomParser;
 
 class LinkedInCrawler
 {
+    /**
+     * Returns the source code from a given url
+     * and analyzes its content
+     *
+     * @param $url
+     * @return Person
+     */
     public static function crawl($url) {
         $html = CurlRequest::getHTML($url);
         return self::analyze($html);
     }
 
+    /**
+     * Analyzes html and extracts all relevant information
+     *
+     * @param $html
+     * @return Person
+     */
     private static function analyze($html) {
-        $maxTriesPerPerson = 5;
-
         $person = new Person();
         $dom = HtmlDomParser::str_get_html( $html );
 

@@ -32,12 +32,14 @@ class ApplicationController extends Controller
         $findings = Session::get('findings');
 
         $characteristics = [];
+        $threatValue = 0;
         if(isset($companyInformation['attackType'])) {
             $calculator = new Calculator($companyInformation, $findings);
-            $characteristics = $calculator->calculateThreat($companyInformation['attackType']);
+            $characteristics = $calculator->getCharacteristicsWithThreatValue($companyInformation['attackType']);
+            $threatValue = $calculator->calculateThreat($companyInformation['attackType']);
         }
 
-        return view('app.assessment', compact('companyInformation', 'findings', 'characteristics'));
+        return view('app.assessment', compact('companyInformation', 'findings', 'characteristics', 'threatValue'));
     }
 
     public function help()
@@ -56,9 +58,11 @@ class ApplicationController extends Controller
         $findings = Session::get('findings');
 
         $characteristics = [];
+        $threatValue = 0;
         if(isset($data['attackType'])) {
             $calculator = new Calculator($data, $findings);
-            $characteristics = $calculator->calculateThreat($data['attackType']);
+            $characteristics = $calculator->getCharacteristicsWithThreatValue($data['attackType']);
+            $threatValue = $calculator->calculateThreat($data['attackType']);
         }
 
         $profiles = $findings['profiles'];
@@ -84,7 +88,7 @@ class ApplicationController extends Controller
         $dateAndTime = Carbon::createFromTimestamp(time())->format('F j, Y, h:i a');
 
         $pdf = App::make('snappy.pdf.wrapper');
-        $pdf->loadView('pdf.threat', compact('data', 'locationsArray', 'profilesArray', 'emailsArray', 'websitesArray', 'findings', 'dateAndTime', 'percentageFindings', 'characteristics'));
+        $pdf->loadView('pdf.threat', compact('data', 'locationsArray', 'profilesArray', 'emailsArray', 'websitesArray', 'findings', 'dateAndTime', 'percentageFindings', 'characteristics', 'threatValue'));
         return $pdf->stream();
     }
 
