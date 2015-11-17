@@ -16,6 +16,13 @@ use Nathanmac\Utilities\Parser\Facades\Parser;
 class XingCrawler
 {
 
+    /**
+     * Returns the source code from a given url
+     * and analyzes its content
+     *
+     * @param $url
+     * @return Person
+     */
     public static function crawl($url) {
         $html = CurlRequest::getHTML($url);
         $communicationChannels = CurlRequest::getHTML($url.'/load_upsell_data?_='.time());
@@ -23,6 +30,14 @@ class XingCrawler
         return self::analyze($html, $communicationChannels, $url);
     }
 
+    /**
+     * Analyzes html code and extracts all relevant information
+     *
+     * @param $html
+     * @param $communicationChannels
+     * @param $url
+     * @return Person
+     */
     private static function analyze($html, $communicationChannels, $url) {
         $dom = HtmlDomParser::str_get_html( $html );
         $person = new Person();

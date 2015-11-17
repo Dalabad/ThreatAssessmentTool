@@ -19,6 +19,9 @@ class Calculator
 
     /**
      * Calculator constructor.
+     *
+     * @param $companyInformation
+     * @param $findings
      */
     public function __construct($companyInformation, $findings)
     {
@@ -26,7 +29,14 @@ class Calculator
         $this->_findings = $findings;
     }
 
-    public function calculateThreat($attackType) {
+    /**
+     * Return relevant characteristics for a given attack type
+     * with their current threat values, based on the gathered information
+     *
+     * @param $attackType
+     * @return array
+     */
+    public function getCharacteristicsWithThreatValue($attackType) {
         $characteristics = AttackTypes2Characteristics::getCharacteristics($attackType);
         foreach($characteristics as $index => $characteristic) {
             $characteristics[$index]['value'] = $this->calculateValue($characteristic['slag']);
@@ -35,6 +45,37 @@ class Calculator
         return $characteristics;
     }
 
+    /**
+     * Calculates the overall threat value for the company
+     * based on the gathered information
+     *
+     * @param $attackType
+     * @return string
+     */
+    public function calculateThreat($attackType) {
+        $characteristics = $this->getCharacteristicsWithThreatValue($attackType);
+        $priorities = $this->getPriorities($attackType);
+
+        $realThreat = 0;
+        $maxThreat = 0;
+        foreach($characteristics as $characteristic) {
+            $maxThreat = $maxThreat + $priorities[$characteristic['slag']];
+            $realThreat = $realThreat + $priorities[$characteristic['slag']] * $characteristic['value'];
+        }
+        $maxThreat = $maxThreat * 100;
+
+        $threatValue = 100/$maxThreat*$realThreat;
+
+        return number_format($threatValue,0);
+    }
+
+    /**
+     * Calculate the threat value for a given characteristic
+     * based on the gathered information
+     *
+     * @param $characteristic
+     * @return int|mixed|string
+     */
     private function calculateValue($characteristic) {
         switch ($characteristic) {
             case 'phone':
@@ -115,6 +156,60 @@ class Calculator
             default:
                 return 0;
         }
+    }
+
+    /**
+     * Get the priorities for all characteristics relevant for a given attack type
+     *
+     * @param $attackType
+     * @return array
+     */
+    private function getPriorities($attackType) {
+
+        $PRIORITY_LOW    = 1;
+        $PRIORITY_MEDIUM = 2;
+        $PRIORITY_HIGH   = 3;
+
+        switch($attackType) {
+            case 'phishing':
+                $priorities = [
+                    'phone'                 => $PRIORITY_HIGH,
+                    'email'                 => $PRIORITY_HIGH,
+                    'messenger'             => $PRIORITY_MEDIUM,
+                    'lingo'                 => $PRIORITY_MEDIUM,
+                    'personal_information'  => $PRIORITY_MEDIUM,
+                    'private_locations'     => $PRIORITY_LOW,
+                    'friends'               => $PRIORITY_LOW,
+                    'websites'              => $PRIORITY_LOW
+                ];
+                break;
+            case 'baiting':
+                $priorities = [
+                    'company_locations'     => $PRIORITY_HIGH,
+                    'organization'          => $PRIORITY_HIGH,
+                    'software'              => $PRIORITY_MEDIUM,
+                    'security_measure'      => $PRIORITY_MEDIUM,
+                    'network'               => $PRIORITY_LOW
+                ];
+                break;
+            case 'impersonation':
+                $priorities = [
+                    'lingo'                 => $PRIORITY_HIGH,
+                    'special_knowledge'     => $PRIORITY_HIGH,
+                    'new_employee'          => $PRIORITY_HIGH,
+                    'personal_information'  => $PRIORITY_MEDIUM,
+                    'security_measure'      => $PRIORITY_MEDIUM,
+                    'company_locations'     => $PRIORITY_MEDIUM,
+                    'private_locations'     => $PRIORITY_MEDIUM,
+                    'friends'               => $PRIORITY_LOW
+                ];
+                break;
+            default:
+                $priorities = [];
+                break;
+        }
+
+        return $priorities;
     }
 
 }

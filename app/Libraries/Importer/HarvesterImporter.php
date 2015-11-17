@@ -20,6 +20,12 @@ class HarvesterImporter extends Importer
     public $findings;
     private $importedFile;
 
+    /**
+     * Import and then analyze a TheHarvester file
+     *
+     * @param Exported $file
+     * @return mixed
+     */
     public function import($file)
     {
         $this->findings['websites']  = [];
@@ -32,6 +38,10 @@ class HarvesterImporter extends Importer
         return $this->findings;
     }
 
+    /**
+     * Analyze the files content for relevant information.
+     * Adds the findings to the collection
+     */
     protected function analyze()
     {
         $array = Parser::xml($this->importedFile);

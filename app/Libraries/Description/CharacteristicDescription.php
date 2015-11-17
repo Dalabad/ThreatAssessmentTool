@@ -11,6 +11,12 @@ namespace App\Libraries\Description;
 
 class CharacteristicDescription
 {
+    /**
+     * Returns a description for a given characteristic
+     *
+     * @param $characteristic
+     * @return array
+     */
     public function getText($characteristic)
     {
         switch ($characteristic) {

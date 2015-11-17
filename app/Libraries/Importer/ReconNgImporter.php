@@ -20,6 +20,12 @@ class ReconNgImporter extends Importer
     public $findings;
     private $importedFile;
 
+    /**
+     * Import and then analyze a reconNG file
+     *
+     * @param Exported $file
+     * @return mixed
+     */
     public function import($file)
     {
         $this->findings['websites']  = [];
@@ -34,6 +40,10 @@ class ReconNgImporter extends Importer
         return $this->findings;
     }
 
+    /**
+     * Analyze the files content for relevant information
+     * Adds the findings to the collection
+     */
     protected function analyze()
     {
         $array = Parser::json($this->importedFile);
@@ -74,6 +84,10 @@ class ReconNgImporter extends Importer
         }
     }
 
+    /**
+     * Analyzes the gathered profile-urls and merges them with the
+     * additional information gathered from those sites
+     */
     private function analyzeProfiles()
     {
         if(count($this->findings['profiles']) <= 1)

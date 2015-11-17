@@ -13,6 +13,13 @@ use Nathanmac\Utilities\Parser\Facades\Parser;
 
 class CoordinatesConverter
 {
+    /**
+     * Returns a formatted address name for given coordinates
+     *
+     * @param $latitude
+     * @param $longitude
+     * @return formatted_address|null
+     */
     public static function convertLongitudeLatitudeToName($latitude, $longitude) {
         $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&sensor=false";
         $html = CurlRequest::getHTML($url);
@@ -20,7 +27,7 @@ class CoordinatesConverter
         $array = Parser::json($html);
 
         if(!isset($array['results'][0]['formatted_address']))
-            return;
+            return null;
 
         return $array['results'][0]['formatted_address'];
     }

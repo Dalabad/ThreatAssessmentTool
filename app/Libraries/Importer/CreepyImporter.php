@@ -19,6 +19,12 @@ class CreepyImporter extends Importer
     public $findings;
     private $importedFile;
 
+    /**
+     * Import and then analyze a file from the Cree.py tool
+     *
+     * @param Exported $file
+     * @return mixed
+     */
     public function import($file)
     {
         $this->findings['locations'] = [];
@@ -30,6 +36,10 @@ class CreepyImporter extends Importer
         return $this->findings;
     }
 
+    /**
+     * Analyze the files content for relevant information.
+     * Adds the findings to the collection
+     */
     protected function analyze()
     {
         $array = Parser::xml($this->importedFile);
