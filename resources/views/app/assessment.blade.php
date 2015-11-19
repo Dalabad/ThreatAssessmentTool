@@ -21,37 +21,46 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped tablesorter">
+            <div>
+                <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Amount of Employees</th>
-                        <th>Website</th>
-                        <th>Selected Attack Type</th>
-                    </tr>
+                        <tr>
+                            <th colspan="2">Company Information</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $companyInformation['companyName'] }}</td>
-                            <td>{{ number_format($companyInformation['companyEmployeeCount']) }}</td>
-                            <td>{{ $companyInformation['companyWebsite'] }}</td>
-                            <td>{{ ucwords($companyInformation['attackType']) }}</td>
+                            <td style="width: 400px">Name</td>
+                            <td>{{ $data['companyName'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Employee Count</td>
+                            <td>{{ number_format($data['companyEmployeeCount']) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td>{{ $data['companyWebsite'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Attack Type</td>
+                            <td>{{ ucwords($data['attackType']) }}</td>
                         </tr>
                     </tbody>
                 </table>
+
+                @include('helper.findings')
             </div>
 
             <div id="gauge" style="width: 400px; height: 300px;"></div>
             <div>
                 @if($threatValue >= 75)
-                    <p>Based on the gathered information the Threat level for {{ $companyInformation['companyName'] }} is considered very high.</p>
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered very high.</p>
                 @elseif($threatValue >= 50)
-                    <p>Based on the gathered information the Threat level for {{ $companyInformation['companyName'] }} is considered high.</p>
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered high.</p>
                 @elseif($threatValue >= 25)
-                    <p>Based on the gathered information the Threat level for {{ $companyInformation['companyName'] }} is considered medium.</p>
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered medium.</p>
                 @elseif($threatValue >= 0)
-                    <p>Based on the gathered information the Threat level for {{ $companyInformation['companyName'] }} is considered low.</p>
+                    <p>Based on the gathered information the Threat level for {{ $data['companyName'] }} is considered low.</p>
                 @endif
             </div>
             <p>Please keep in mind, that the value of information can be significantly different then the amount of gathered information. For a social engineer it can be good enough to have one single information which helps getting access. On the other hand the social engineer might not be able to access the information with hundreds of information. It all depends on how good the information is and how easy a target can be fooled.</p>

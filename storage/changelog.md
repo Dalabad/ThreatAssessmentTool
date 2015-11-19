@@ -16,6 +16,8 @@
 - Threat Level Calculation
 - User can enter additional information on the Dashboard depending on selected attacktype
 - Commented all methods for easier readability
+- Findings from dashboard form are displayed in pdf report
+- Findings from dashboard form are displayed on threat assessment page
 
 ## [0.3.4] - 2015-11-06
 ### Added
