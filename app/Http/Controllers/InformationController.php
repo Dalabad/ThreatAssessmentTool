@@ -24,10 +24,16 @@ class InformationController extends Controller
     public function companyInformation(CompanyInformationRequest $request)
     {
         $companyInformation = [
-            'companyName' => $request->input('companyName'),
-            'companyEmployeeCount' => $request->input('companyEmployeeCount'),
-            'companyWebsite' => $request->input('companyWebsite'),
-            'attackType' => $request->input('attackType'),
+            'companyName'           => $request->input('companyName'),
+            'companyEmployeeCount'  => $request->input('companyEmployeeCount'),
+            'companyWebsite'        => $request->input('companyWebsite'),
+            'attackType'            => $request->input('attackType'),
+            'companyLocation'       => 0,
+            'companyLingo'          => 0,
+            'socialAccounts'        => 0,
+            'companySoftware'       => 0,
+            'companyNetwork'        => 0,
+            'companySecurity'       => 0
         ];
         Session::put('companyInformation', $companyInformation);
         Session::put('notification', 'Company Information has been saved!');
@@ -37,13 +43,11 @@ class InformationController extends Controller
 
     public function phishing(PhishingRequest $request)
     {
-        $companyInformation = [
-            'companyLocation'   => $request->input('inputCompanyLocation'),
-            'companyLingo'      => $request->input('inputCompanyLingo'),
-            'socialAccounts'    => $request->input('inputSocialAccounts')
-        ];
+        $companyInformation = Session::get('companyInformation');
+        $companyInformation['companyLocation']  = $request->input('inputCompanyLocation');
+        $companyInformation['companyLingo']     = $request->input('inputCompanyLingo');
+        $companyInformation['socialAccounts']   = $request->input('inputSocialAccounts');
 
-        $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
         Session::put('companyInformation', $companyInformation);
         Session::put('notification', 'Information has been saved!');
 
@@ -52,14 +56,12 @@ class InformationController extends Controller
 
     public function baiting(BaitingRequest $request)
     {
-        $companyInformation = [
-            'companyLocation' => $request->input('inputCompanyLocation'),
-            'companySoftware' => $request->input('inputCompanySoftware'),
-            'companyNetwork' => $request->input('inputCompanyNetwork'),
-            'companySecurity' => $request->input('inputCompanySecurity')
-        ];
+        $companyInformation = Session::get('companyInformation');
+        $companyInformation['companyLocation']  = $request->input('inputCompanyLocation');
+        $companyInformation['companySoftware']  = $request->input('inputCompanySoftware');
+        $companyInformation['companyNetwork']   = $request->input('inputCompanyNetwork');
+        $companyInformation['companySecurity']  = $request->input('inputCompanySecurity');
 
-        $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
         Session::put('companyInformation', $companyInformation);
         Session::put('notification', 'Company Information has been saved!');
 
@@ -68,14 +70,12 @@ class InformationController extends Controller
 
     public function impersonation(ImpersonationRequest $request)
     {
-        $companyInformation = [
-            'companyLocation' => $request->input('inputCompanyLocation'),
-            'companyLingo' => $request->input('inputCompanyLingo'),
-            'socialAccounts' => $request->input('inputSocialAccounts'),
-            'companySecurity' => $request->input('inputCompanySecurity')
-        ];
+        $companyInformation = Session::get('companyInformation');
+        $companyInformation['companyLocation']  = $request->input('inputCompanyLocation');
+        $companyInformation['companyLingo']     = $request->input('inputCompanyLingo');
+        $companyInformation['socialAccounts']   = $request->input('inputSocialAccounts');
+        $companyInformation['companySecurity']   = $request->input('inputCompanySecurity');
 
-        $companyInformation = array_merge($companyInformation, Session::get('companyInformation'));
         Session::put('companyInformation', $companyInformation);
         Session::put('notification', 'Company Information has been saved!');
 

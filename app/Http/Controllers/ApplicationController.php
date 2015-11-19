@@ -57,6 +57,11 @@ class ApplicationController extends Controller
         $data = Session::get('companyInformation');
         $findings = Session::get('findings');
 
+        $profilesArray = [];
+        $locationsArray = [];
+        $emailsArray = [];
+        $websitesArray = [];
+
         $characteristics = [];
         $threatValue = 0;
         if(isset($data['attackType'])) {
@@ -66,18 +71,32 @@ class ApplicationController extends Controller
         }
 
         $profiles = $findings['profiles'];
-        usort($profiles, array($this, 'cmpProfiles'));
-        $profilesArray = array_chunk($profiles, 4)[0];
-        $profilesArray = array_merge([$profilesArray], array_chunk(array_splice($profiles, 4), 5));
+        if(count($profiles)) {
+            usort($profiles, array($this, 'cmpProfiles'));
+            $profilesArray = array_chunk($profiles, 4)[0];
+            $profilesArray = array_merge([$profilesArray], array_chunk(array_splice($profiles, 4), 5));
+        }
 
         $locations = $findings['locations'];
-        $locationsArray = array_chunk($locations, 9)[0];
-        $locationsArray = array_merge([$locationsArray], array_chunk(array_splice($locations, 9), 16));
+        if(count($locations)) {
+            $locationsArray = array_chunk($locations, 9)[0];
+            $locationsArray = array_merge([$locationsArray], array_chunk(array_splice($locations, 9), 16));
+        }
 
-        $emailsArray = array_chunk($findings['emails'], 30);
-        $websitesArray = array_chunk($findings['websites'], 30);
+        if(count($findings['emails'])) {
+            $emailsArray = array_chunk($findings['emails'], 30);
+        }
+
+        if(count($findings['websites'])) {
+            $websitesArray = array_chunk($findings['websites'], 30);
+        }
 
         $overallFindingsAmount = count($findings['profiles'])+count($findings['emails'])+count($findings['websites'])+count($findings['locations']);
+
+        // Avoid division by zero
+        if($overallFindingsAmount == 0) {
+            $overallFindingsAmount = 1;
+        }
         $percentageFindings = [
             'profiles' => number_format(100/$overallFindingsAmount*count($findings['profiles']), 2),
             'emails' => number_format(100/$overallFindingsAmount*count($findings['emails']), 2),

@@ -16,9 +16,9 @@
         <div class="col-sm-10">
             <label for="selectCompanySoftware" class="control-label">Based on the gathered information, what is your knowledge of internal software?</label>
             @if(isset($companyInformation['companySoftware']))
-                {!! Form::select('inputCompanySoftware', array('0' => 'No Knowledge', '50' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), $companyInformation['companySoftware'], ['class' => 'form-control']) !!}
+                {!! Form::select('inputCompanySoftware', array('0' => 'No Knowledge', '33' => 'Little Knowledge', '66' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), $companyInformation['companySoftware'], ['class' => 'form-control']) !!}
             @else
-                {!! Form::select('inputCompanySoftware', array('0' => 'No Knowledge', '50' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), null, ['class' => 'form-control']) !!}
+                {!! Form::select('inputCompanySoftware', array('0' => 'No Knowledge', '33' => 'Little Knowledge', '66' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), null, ['class' => 'form-control']) !!}
             @endif
         </div>
     </div>
@@ -27,9 +27,9 @@
         <div class="col-sm-10">
             <label for="selectCompanyNetwork" class="control-label">Based on the gathered information, what is your knowledge of the internal network?</label>
             @if(isset($companyInformation['companyNetwork']))
-                {!! Form::select('inputCompanyNetwork', array('0' => 'No Knowledge', '50' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), $companyInformation['companyNetwork'], ['class' => 'form-control']) !!}
+                {!! Form::select('inputCompanyNetwork', array('0' => 'No Knowledge', '33' => 'Little Knowledge', '66' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), $companyInformation['companyNetwork'], ['class' => 'form-control']) !!}
             @else
-                {!! Form::select('inputCompanyNetwork', array('0' => 'No Knowledge', '50' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), null, ['class' => 'form-control']) !!}
+                {!! Form::select('inputCompanyNetwork', array('0' => 'No Knowledge', '33' => 'Little Knowledge', '66' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), null, ['class' => 'form-control']) !!}
             @endif
         </div>
     </div>
@@ -38,9 +38,9 @@
         <div class="col-sm-10">
             <label for="selectCompanyNetwork" class="control-label">Based on the gathered information, what is your knowledge of the internal security?</label>
             @if(isset($companyInformation['companySecurity']))
-                {!! Form::select('inputCompanySecurity', array('0' => 'No Knowledge', '50' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), $companyInformation['companySecurity'], ['class' => 'form-control']) !!}
+                {!! Form::select('inputCompanySecurity', array('0' => 'No Knowledge', '33' => 'Little Knowledge', '66' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), $companyInformation['companySecurity'], ['class' => 'form-control']) !!}
             @else
-                {!! Form::select('inputCompanySecurity', array('0' => 'No Knowledge', '50' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), null, ['class' => 'form-control']) !!}
+                {!! Form::select('inputCompanySecurity', array('0' => 'No Knowledge', '33' => 'Little Knowledge', '66' => 'Medium Knowledge', '100' => 'Extensive Knowledge'), null, ['class' => 'form-control']) !!}
             @endif
         </div>
     </div>

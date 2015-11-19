@@ -22,7 +22,7 @@ class PhishingRequest extends Request {
 		return [
             'inputCompanyLocation' => 'required|integer',
             'inputCompanyLingo' => 'required|integer',
-            'inputSocialAccounts' => 'required|integer'
+			'inputSocialAccounts' => 'required|integer'
 		];
 	}
 

@@ -168,7 +168,7 @@
         <div class="panel-body">
             <table class="table table-striped">
                 <tr>
-                    <td>Name</td>
+                    <td style="width: 400px">Name</td>
                     <td>{{ $data['companyName'] }}</td>
                 </tr>
                 <tr>
@@ -189,10 +189,10 @@
                 </tr>
             </table>
 
+            @include('helper.findings')
+
         </div>
     </div>
-
-    {{-- TODO: Add additional information like knowledge of software, network, lingo, ... --}}
 
     <div class="panel panel-primary">
         <div class="panel-heading">
