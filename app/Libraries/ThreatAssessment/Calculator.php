@@ -79,6 +79,9 @@ class Calculator
     private function calculateValue($characteristic) {
         switch ($characteristic) {
             case 'phone':
+                if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
+                    return 0;
+                }
                 $counter = 0;
                 foreach($this->_findings['profiles'] as $profile) {
                     $attr = $profile->getAttributes();
@@ -95,12 +98,16 @@ class Calculator
                     return 0;
             case 'friends':
                 if(isset($this->_companyInformation['socialAccounts']))
-                    return min(100, $this->_companyInformation['socialAccounts']);
+                    return min(100, $this->_companyInformation['socialAccounts']*1.5);
                 else
                     return 0;
             case 'personal_information':
-                return number_format(100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']),2);
+                return number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['profiles'])+$this->_companyInformation['socialAccounts']),2);
             case 'email':
+
+                if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
+                    return 0;
+                }
                 $counter = 0;
                 foreach($this->_findings['profiles'] as $profile) {
                     $attr = $profile->getAttributes();
@@ -110,6 +117,9 @@ class Calculator
                 }
                 return number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['emails'])+$counter),2);
             case 'messenger':
+                if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
+                    return 0;
+                }
                 $counter = 0;
                 foreach($this->_findings['profiles'] as $profile) {
                     $attr = $profile->getAttributes();
@@ -141,6 +151,9 @@ class Calculator
                 else
                     return 0;
             case 'organization':
+                if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
+                    return 0;
+                }
                 $counter = 0;
                 foreach($this->_findings['profiles'] as $profile) {
                     $attr = $profile->getAttributes();

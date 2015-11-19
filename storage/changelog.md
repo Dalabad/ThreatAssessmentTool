@@ -7,6 +7,7 @@
 
 ### Fixed
 - LinkedIn Importer adapted to website changes from LinkedIn
+- PDF-Report is now possible without findings 
 
 ### Added
 - Map added to the PDF report
