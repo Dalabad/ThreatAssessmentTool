@@ -21,7 +21,7 @@ class CompanyInformationRequest extends Request {
 	{
 		return [
             'companyName' => 'required',
-            'companyEmployeeCount' => 'required|integer',
+            'companyEmployeeCount' => 'required|integer|min:1',
             'companyWebsite' => 'required|url',
             'attackType' => 'required',
 		];

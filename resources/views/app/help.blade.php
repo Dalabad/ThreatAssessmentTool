@@ -32,6 +32,7 @@
             </ul>
             </p>
             <h2>How can I use the tools?</h2>
+            {{-- TODO: Add Maltego help --}}
             <h3>Recon-ng</h3>
             <ul>
                 <li>Find hosts</li>

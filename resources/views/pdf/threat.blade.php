@@ -192,6 +192,8 @@
         </div>
     </div>
 
+    {{-- TODO: Add additional information like knowledge of software, network, lingo, ... --}}
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Threat Level</h3>
