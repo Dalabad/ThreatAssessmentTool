@@ -28,18 +28,18 @@ class ApplicationController extends Controller
 
     public function assessment()
     {
-        $companyInformation = Session::get('companyInformation');
+        $data = Session::get('companyInformation');
         $findings = Session::get('findings');
 
         $characteristics = [];
         $threatValue = 0;
-        if(isset($companyInformation['attackType'])) {
-            $calculator = new Calculator($companyInformation, $findings);
-            $characteristics = $calculator->getCharacteristicsWithThreatValue($companyInformation['attackType']);
-            $threatValue = $calculator->calculateThreat($companyInformation['attackType']);
+        if(isset($data['attackType'])) {
+            $calculator = new Calculator($data, $findings);
+            $characteristics = $calculator->getCharacteristicsWithThreatValue($data['attackType']);
+            $threatValue = $calculator->calculateThreat($data['attackType']);
         }
 
-        return view('app.assessment', compact('companyInformation', 'findings', 'characteristics', 'threatValue'));
+        return view('app.assessment', compact('findings', 'characteristics', 'threatValue', 'data'));
     }
 
     public function help()
