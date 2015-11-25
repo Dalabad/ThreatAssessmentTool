@@ -45,7 +45,13 @@
                                         @if($category == 'url' || $category == 'website')
                                             <td>{!! Html::link($person->getAttributes()[$category], 'Link') !!}</td>
                                         @else
-                                            <td>{{ ucwords($person->getAttributes()[$category]) }}</td>
+                                            @if($person->getAttributes()[$category] == true  && strlen($person->getAttributes()[$category]) == 1)
+                                                <td><span class="glyphicon glyphicon-ok"></span></td>
+                                            @elseif($person->getAttributes()[$category] == false && strlen($person->getAttributes()[$category]) < 1)
+                                                <td><span class="glyphicon glyphicon-remove"></span></td>
+                                            @else
+                                                <td>{{ ucwords($person->getAttributes()[$category]) }}</td>
+                                            @endif
                                         @endif
 
                                 @else
