@@ -52,19 +52,18 @@ class XingImporter extends Importer
     /**
      * Generate the html code to include all employees
      *
-     * NOTE: Limited to 1000 per Letter by the code, to avoid
+     * NOTE: Limited to 100 per Letter by the code, to avoid
      * very long waiting times
      *
      * @param $mainUrl
      * @return string
      */
     protected function gatherHtmlCode($mainUrl) {
-        //$letters = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        $letters = str_split('A');
+        $letters = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
         $sourceCode = "";
 
         foreach($letters as $letter) {
-            $url = $mainUrl.'/employees.json?filter=all&letter='.$letter.'&limit=1000&offset=0&_='.time();
+            $url = $mainUrl.'/employees.json?filter=all&letter='.$letter.'&limit=100&offset=0&_='.time();
             $html = CurlRequest::getHTML($url);
             $json = Parser::json($html);
 
