@@ -23,6 +23,7 @@ Route::get('/result/mail',      'ResultController@mail');
 Route::get('/result/location',  'ResultController@location');
 Route::get('/result/website',   'ResultController@website');
 
+Route::get('/api',              'ApplicationController@api');
 
 Route::get('/information/reset',                'InformationController@reset');
 Route::post('/information/upload',              'InformationController@upload');
