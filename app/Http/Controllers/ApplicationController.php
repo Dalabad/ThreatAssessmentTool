@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Api\XingApi;
 use App\Libraries\Mapper\AttackTypes2Characteristics;
 use App\Libraries\ThreatAssessment\Calculator;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Nathanmac\Utilities\Parser\Facades\Parser;
 
 class ApplicationController extends Controller
 {
@@ -122,5 +123,10 @@ class ApplicationController extends Controller
         }
 
         return ($a->getAttributes()['last-name'] < $b->getAttributes()['last-name']) ? -1 : 1;
+    }
+
+    public function api(Request $request) {
+        $api = new XingApi();
+        $api->loginWithXing($request);
     }
 }
