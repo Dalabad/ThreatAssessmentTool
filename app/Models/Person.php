@@ -31,6 +31,9 @@ class Person
     }
 
     public function __toString() {
-        return $this->getAttributes()['url'];
+        if(isset($this->getAttributes()['url']))
+            return $this->getAttributes()['url'];
+
+        return "";
     }
 }

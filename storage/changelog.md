@@ -1,5 +1,15 @@
 # Change Log
 
+## Future Plans
+- Possibility to remove entries from the gathered results
+- Move time consuming jobs to threads
+- Loading progress bars
+- Use LinkedIn | Xing API instead of website crawler
+
+## [0.3.6] - 2015-11-27
+### Fixed
+- Logic of LinkedIn and Xing Importer handling the dom elements
+
 ## [0.3.5] - 2015-11-20
 ### Changed
 - Replaced Google Maps Script
