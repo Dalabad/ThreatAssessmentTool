@@ -411,9 +411,9 @@
                         </div>
                         <div class="panel-footer">
                             @if($person->getAttributes()['resource'] == 'xing')
-                                Resource: <img style="max-height: 25px" src="{{ url('/images/logos/xing.png') }}" /> | Url: {{ $person->getAttributes()['url'] }}
+                                Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/xing.png" /> | Url: {{ $person->getAttributes()['url'] }}
                             @elseif($person->getAttributes()['resource'] == 'linkedin')
-                                Resource: <img style="max-height: 25px" src="{{ url('/images/logos/linkedin.png') }}" /> | Url: {{ $person->getAttributes()['url'] }}
+                                Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/linkedin.png" /> | Url: {{ $person->getAttributes()['url'] }}
                             @else
                                 Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}
                             @endif
