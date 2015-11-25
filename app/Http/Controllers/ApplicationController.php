@@ -124,9 +124,4 @@ class ApplicationController extends Controller
 
         return ($a->getAttributes()['last-name'] < $b->getAttributes()['last-name']) ? -1 : 1;
     }
-
-    public function api(Request $request) {
-        $api = new XingApi();
-        $api->loginWithXing($request);
-    }
 }
