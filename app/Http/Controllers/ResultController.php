@@ -32,9 +32,11 @@ class ResultController extends Controller
         $categories = [];
         if(is_array($results)) {
             foreach($results['profiles'] as $profile) {
-                $keys = array_keys($profile->getAttributes());
-                $categories = array_merge($categories, $keys);
-                $categories = array_unique($categories);
+                if(is_array($profile->getAttributes())) {
+                    $keys = array_keys($profile->getAttributes());
+                    $categories = array_merge($categories, $keys);
+                    $categories = array_unique($categories);
+                }
             }
         }
         return view('result.people', compact('results', 'categories', 'mailCount'));

@@ -42,11 +42,18 @@ class XingCrawler
         $dom = HtmlDomParser::str_get_html( $html );
         $person = new Person();
 
+        if(!method_exists($dom, 'find')) {
+            return $person;
+        }
+
         $fullName = $dom->find('h1.username', 0);
+
         if(isset($fullName)) {
             $explodedName = explode(' ', $fullName->plaintext);
             $firstName = $explodedName[0];
             $lastName = $explodedName[1];
+            if(isset($explodedName[2]))
+                $lastName .= " ".$explodedName[2];
 
             $person->addAttribute("first-name", $firstName)
                 ->addAttribute('last-name', $lastName);

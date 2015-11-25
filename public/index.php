@@ -6,7 +6,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
-
+ini_set('max_execution_time', 999999999);
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

@@ -38,8 +38,9 @@ class LinkedInCrawler
         $person = new Person();
         $dom = HtmlDomParser::str_get_html( $html );
 
-        if(strlen($dom) < 10)
+        if(!method_exists($dom, 'find')) {
             return $person;
+        }
 
         $name = $dom->find('h1#name', 0);
         if(isset($name)) {

@@ -17,7 +17,7 @@ use Sunra\PhpSimple\HtmlDomParser;
 class XingImporter extends Importer
 {
 
-    public $findings;
+    public  $findings;
     private $importedFile;
     private $companyName;
 
@@ -33,12 +33,17 @@ class XingImporter extends Importer
 
         $website = CurlRequest::getHTML($url);
         $dom = HtmlDomParser::str_get_html( $website );
-        $organizationName = $dom->find('h1.organization-name', 0);
-        $this->companyName = $organizationName->plaintext;
+        if(method_exists($dom, 'find')){
+            $organizationName = $dom->find('h1.organization-name', 0);
+            if(method_exists($organizationName, 'plaintext')) {
+                $this->companyName = $organizationName->plaintext;
+            } else {
+                $this->companyName = "";
+            }
+        }
 
         $this->importedFile = $this->gatherHtmlCode($url);
 
-        $this->analyze();
         $this->analyzeProfiles();
 
         return $this->findings;
@@ -54,19 +59,29 @@ class XingImporter extends Importer
      * @return string
      */
     protected function gatherHtmlCode($mainUrl) {
-        $letters = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        //$letters = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        $letters = str_split('A');
         $sourceCode = "";
 
         foreach($letters as $letter) {
             $url = $mainUrl.'/employees.json?filter=all&letter='.$letter.'&limit=1000&offset=0&_='.time();
             $html = CurlRequest::getHTML($url);
             $json = Parser::json($html);
-            if(isset($json['contacts'][$letter]['html']))
-                foreach($json['contacts'][$letter]['html'] as $code)
-                    $sourceCode .= $code;
-        }
 
-        return $sourceCode;
+            if(isset($json['contacts'][$letter]['html'])) {
+                foreach($json['contacts'][$letter]['html'] as $code) {
+                    $sourceCode .= $code;
+                }
+            }
+
+            $this->importedFile = $sourceCode;
+
+            // Analyse current letter
+            $this->analyze();
+
+            // Reset sourceCode for next letter
+            $sourceCode = "";
+        }
     }
 
     /**
@@ -74,14 +89,19 @@ class XingImporter extends Importer
      */
     protected function analyze() {
         $dom = HtmlDomParser::str_get_html( $this->importedFile );
-        foreach($dom->find('a.user-name-link') as $element) {
-            $url = 'https://www.xing.com'.$element->href;
-            $url = substr($url,0,strpos($url, '/',29));
-            $person = new Person();
-            $person->addAttribute('resource', 'xing')
-                ->addAttribute('url', $url)
-                ->addAttribute('company', $this->companyName);
-            $this->findings['profiles'][] = $person;
+
+        if(method_exists($dom, 'find')) {
+            foreach($dom->find('a.user-name-link') as $element) {
+                $url = 'https://www.xing.com'.$element->href;
+                $url = substr($url,0,strpos($url, '/',29));
+
+                $person = new Person();
+                $person->addAttribute('resource', 'xing')
+                       ->addAttribute('url', $url)
+                       ->addAttribute('company', $this->companyName);
+
+                $this->findings['profiles'][] = $person;
+            }
         }
     }
 
