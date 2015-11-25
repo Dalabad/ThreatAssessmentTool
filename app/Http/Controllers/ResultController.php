@@ -39,6 +39,7 @@ class ResultController extends Controller
                 }
             }
         }
+        array_forget($categories, array_search('picture',$categories) );
         return view('result.people', compact('results', 'categories', 'mailCount'));
     }
 

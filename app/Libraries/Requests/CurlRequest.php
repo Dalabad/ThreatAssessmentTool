@@ -30,7 +30,6 @@ class CurlRequest
 
         // Get the status code
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        dd($status, $html);
 
         curl_close($curl);
         return $html;

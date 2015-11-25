@@ -74,8 +74,7 @@ class ApplicationController extends Controller
         $profiles = $findings['profiles'];
         if(count($profiles)) {
             usort($profiles, array($this, 'cmpProfiles'));
-            $profilesArray = array_chunk($profiles, 4)[0];
-            $profilesArray = array_merge([$profilesArray], array_chunk(array_splice($profiles, 4), 5));
+            $profilesArray = array_chunk($profiles, 4);
         }
 
         $locations = $findings['locations'];

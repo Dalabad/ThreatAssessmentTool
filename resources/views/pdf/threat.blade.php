@@ -314,10 +314,19 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
+                                            @if(isset($person->getAttributes()['company']))
+                                                <td rowspan="4">
+                                                    <img style="max-height: 128px" src="{{ $person->getAttributes()['picture'] }}"/>
+                                                </td>
+                                            @endif
                                             <td>Company</td>
                                             <td colspan="2">
                                                 @if(isset($person->getAttributes()['company']))
-                                                    {{ $person->getAttributes()['company'] }}
+                                                    @if(isset($person->getAttributes()['company-start']))
+                                                        {{ $person->getAttributes()['company'] }} (since {{ $person->getAttributes()['company-start'] }})
+                                                    @else
+                                                        {{ $person->getAttributes()['company'] }}
+                                                    @endif
                                                 @else
                                                     -
                                                 @endif
@@ -332,18 +341,36 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Location</td>
+                                            <td>Private Location</td>
                                             <td colspan="2">
-                                                @if(isset($person->getAttributes()['location']))
-                                                    {{ $person->getAttributes()['location'] }}
+                                                @if(isset($person->getAttributes()['private_address']))
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                @else
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                @endif
+                                            </td>
+                                            <td>Business Location</td>
+                                            <td colspan="2">
+                                                @if(isset($person->getAttributes()['business_address']))
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                @else
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Languages</td>
+                                            <td colspan="2">
+                                                @if(isset($person->getAttributes()['languages']))
+                                                    {{ $person->getAttributes()['languages'] }}
                                                 @else
                                                     -
                                                 @endif
                                             </td>
-                                            <td>Industry</td>
+                                            <td>Birthday</td>
                                             <td colspan="2">
-                                                @if(isset($person->getAttributes()['industry']))
-                                                    {{ $person->getAttributes()['industry'] }}
+                                                @if(isset($person->getAttributes()['birthday']))
+                                                    {{ $person->getAttributes()['birthday'] }}
                                                 @else
                                                     -
                                                 @endif
@@ -358,13 +385,6 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if(isset($person->getAttributes()['address']))
-                                                    Address: <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    Address: <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                            <td>
                                                 @if(isset($person->getAttributes()['email']))
                                                     E-Mail: <span class="glyphicon glyphicon-ok"></span>
                                                 @else
@@ -372,7 +392,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if(isset($person->getAttributes()['messenger']))
+                                                @if(isset($person->getAttributes()['mobile']))
                                                     Messenger: <span class="glyphicon glyphicon-ok"></span>
                                                 @else
                                                     Messenger: <span class="glyphicon glyphicon-remove"></span>
@@ -385,18 +405,19 @@
                                                     Fax: <span class="glyphicon glyphicon-remove"></span>
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if(isset($person->getAttributes()['web']))
-                                                    Web: <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    Web: <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                         </div>
-                        <div class="panel-footer">Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}</div>
+                        <div class="panel-footer">
+                            @if($person->getAttributes()['resource'] == 'xing')
+                                Resource: <img style="max-height: 25px" src="{{ url('/images/logos/xing.png') }}" /> | Url: {{ $person->getAttributes()['url'] }}
+                            @elseif($person->getAttributes()['resource'] == 'linkedin')
+                                Resource: <img style="max-height: 25px" src="{{ url('/images/logos/linkedin.png') }}" /> | Url: {{ $person->getAttributes()['url'] }}
+                            @else
+                                Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}
+                            @endif
+                        </div>
                     </div>
                 @endforeach
             @if($i < count($profilesArray)-1)
