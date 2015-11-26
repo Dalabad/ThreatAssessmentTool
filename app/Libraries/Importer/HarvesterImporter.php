@@ -8,10 +8,6 @@
 
 namespace App\Libraries\Importer;
 
-
-use App\Libraries\Crawler\LinkedInCrawler;
-use App\Libraries\Crawler\XingCrawler;
-use App\Models\Person;
 use Nathanmac\Utilities\Parser\Facades\Parser;
 
 class HarvesterImporter extends Importer
