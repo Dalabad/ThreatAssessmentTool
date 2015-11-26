@@ -316,7 +316,11 @@
                                         <tr>
                                             @if(isset($person->getAttributes()['company']))
                                                 <td rowspan="4">
-                                                    <img style="max-height: 128px" src="{{ $person->getAttributes()['picture'] }}"/>
+                                                    @if(isset($person->getAttributes()['picture']))
+                                                        <img style="max-height: 128px" src="{{ $person->getAttributes()['picture'] }}"/>
+                                                    @else
+                                                        <img style="max-height: 128px" src="https://x2.xingassets.com/assets/frontend_minified/img/users/nobody_m.128x128.jpg" />
+                                                    @endif
                                                 </td>
                                             @endif
                                             <td>Company</td>
@@ -410,12 +414,16 @@
                                 </table>
                         </div>
                         <div class="panel-footer">
-                            @if($person->getAttributes()['resource'] == 'xing')
-                                Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/xing.png" /> | Url: {{ $person->getAttributes()['url'] }}
-                            @elseif($person->getAttributes()['resource'] == 'linkedin')
-                                Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/linkedin.png" /> | Url: {{ $person->getAttributes()['url'] }}
+                            @if($person->getAttributes()['resource'] == 'Whois_pocs' || !isset($person->getAttributes()['url']))
+                                Resource: {{ $person->getAttributes()['resource'] }}
                             @else
-                                Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}
+                                @if($person->getAttributes()['resource'] == 'xing')
+                                    Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/xing.png" /> | Url: {{ $person->getAttributes()['url'] }}
+                                @elseif($person->getAttributes()['resource'] == 'linkedin')
+                                    Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/linkedin.png" /> | Url: {{ $person->getAttributes()['url'] }}
+                                @else
+                                    Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}
+                                @endif
                             @endif
                         </div>
                     </div>
