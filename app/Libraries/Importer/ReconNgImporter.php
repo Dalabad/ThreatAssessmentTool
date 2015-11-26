@@ -10,7 +10,6 @@ namespace App\Libraries\Importer;
 
 
 use App\Libraries\Crawler\LinkedInCrawler;
-use App\Libraries\Crawler\XingCrawler;
 use App\Models\Person;
 use Nathanmac\Utilities\Parser\Facades\Parser;
 
@@ -103,9 +102,6 @@ class ReconNgImporter extends Importer
             switch($attributes['resource']) {
                 case 'linkedin':
                     $crawler = new LinkedInCrawler();
-                    break;
-                case 'xing':
-                    $crawler = new XingCrawler();
                     break;
             }
 
