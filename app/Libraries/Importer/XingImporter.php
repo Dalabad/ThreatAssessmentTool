@@ -18,7 +18,6 @@ class XingImporter extends Importer
 
     public  $findings;
     private $importedFile;
-    private $companyName;
     private $profileIds = [];
 
     /**

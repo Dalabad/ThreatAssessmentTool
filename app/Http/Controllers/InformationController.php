@@ -142,15 +142,17 @@ class InformationController extends Controller
 
         switch ($request->input('inputUrlType')) {
             case 'person':
-                $crawler = new XingCrawler();
-                $person = $crawler->crawl($url);
-                $findings['profiles'][] = $person;
                 $notificationMessage = 'Xing information has been imported!';
                 Session::put('notification', $notificationMessage);
-
-                $merger = new Merger();
-                $merger->addFindings($findings);
-                break;
+                $splittedURL = str_split($url);
+                $url = explode('/', $url);
+                if($splittedURL[count($splittedURL)-1] == '/') {
+                    $profileIds = [$url[count($url)-2]];
+                } else {
+                    $profileIds = [$url[count($url)-1]];
+                }
+                Session::put('XingProfileIDs', $profileIds);
+                return redirect('/api/xing/'.time());
             case 'company':
                 if(ends_with($url, '/')) {
                     $url = substr($url, 0, strlen($url) - 1);
@@ -175,7 +177,6 @@ class InformationController extends Controller
         } else {
             // Get profileIDs
             $profileIDs = Session::get('XingProfileIDs');
-            $company    = Session::get('XingProfileCompany');
 
             if(!count($profileIDs))
                 return redirect('/result');
