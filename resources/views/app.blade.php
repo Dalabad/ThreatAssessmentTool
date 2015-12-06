@@ -77,9 +77,6 @@
                 <li class="{{ (Request::is('contact') )  ? 'active' : '' }}">
                     <a href="{{ url('/contact') }}"><i class="fa fa-fw fa-info-circle"></i> Contact</a>
                 </li>
-                <li class="{{ (Request::is('pdf') )  ? 'active' : '' }}">
-                    <a href="{{ url('/pdf') }}"><i class="fa fa-fw fa-info-circle"></i> PDF</a>
-                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

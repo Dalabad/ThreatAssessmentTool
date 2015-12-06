@@ -53,7 +53,7 @@ class ApplicationController extends Controller
         return view('app.contact');
     }
 
-    public function pdf()
+    public function getPdf($detailed = 'simple')
     {
         $data = Session::get('companyInformation');
         $findings = Session::get('findings');
@@ -107,7 +107,12 @@ class ApplicationController extends Controller
         $dateAndTime = Carbon::createFromTimestamp(time())->format('F j, Y, h:i a');
 
         $pdf = App::make('snappy.pdf.wrapper');
-        $pdf->loadView('pdf.threat', compact('data', 'locationsArray', 'profilesArray', 'emailsArray', 'websitesArray', 'findings', 'dateAndTime', 'percentageFindings', 'characteristics', 'threatValue'));
+        $pdf->loadView('pdf.threat',
+            compact('data', 'locationsArray', 'profilesArray', 'emailsArray',
+                'websitesArray', 'findings', 'dateAndTime', 'percentageFindings',
+                'characteristics', 'threatValue', 'detailed'
+            )
+        );
         return $pdf->stream();
     }
 

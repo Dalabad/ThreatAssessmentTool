@@ -21,6 +21,13 @@
 
     <div class="row">
         <div class="col-md-12">
+            <a href="{{ url('/download/detailed') }}" target="_blank" class="btn btn-primary">Detailed Report</a>
+            <a href="{{ url('/download/') }}" target="_blank" class="btn btn-primary">Simple Report</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <div>
                 <table class="table table-striped">
                     <thead>
