@@ -288,260 +288,262 @@
     <h2>Data completion in percent</h2>
     <canvas id="characteristicsChart" class="chart" width="800" height="500"></canvas>
 
-    <div class="page-break"></div>
+    @if($detailed == "detailed")
+        <div class="page-break"></div>
 
-    <h2>Findings</h2>
-    <h3>Profiles</h3>
+        <h2>Findings</h2>
+        <h3>Profiles</h3>
 
-    @if(count($profilesArray))
-        @for ($i = 0; $i < count($profilesArray); $i++)
-                @foreach($profilesArray[$i] as $person)
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <b>
-                                @if(isset($person->getAttributes()['last-name']))
-                                    {{ ucwords($person->getAttributes()['last-name']) }},
-                                @endif
-                                @if(isset($person->getAttributes()['first-name']))
-                                    {{ ucwords($person->getAttributes()['first-name']) }}
-                                @endif
-                                @if(!isset($person->getAttributes()['first-name']) && !isset($person->getAttributes()['last-name']))
-                                    No name could be found
-                                @endif
-                            </b>
-                        </div>
-                        <div class="panel-body">
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            @if(isset($person->getAttributes()['company']))
-                                                <td rowspan="4">
-                                                    @if(isset($person->getAttributes()['picture']))
-                                                        <img style="max-height: 128px" src="{{ $person->getAttributes()['picture'] }}"/>
+        @if(count($profilesArray))
+            @for ($i = 0; $i < count($profilesArray); $i++)
+                    @foreach($profilesArray[$i] as $person)
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <b>
+                                    @if(isset($person->getAttributes()['last-name']))
+                                        {{ ucwords($person->getAttributes()['last-name']) }},
+                                    @endif
+                                    @if(isset($person->getAttributes()['first-name']))
+                                        {{ ucwords($person->getAttributes()['first-name']) }}
+                                    @endif
+                                    @if(!isset($person->getAttributes()['first-name']) && !isset($person->getAttributes()['last-name']))
+                                        No name could be found
+                                    @endif
+                                </b>
+                            </div>
+                            <div class="panel-body">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                @if(isset($person->getAttributes()['company']))
+                                                    <td rowspan="4">
+                                                        @if(isset($person->getAttributes()['picture']))
+                                                            <img style="max-height: 128px" src="{{ $person->getAttributes()['picture'] }}"/>
+                                                        @else
+                                                            <img style="max-height: 128px" src="https://x2.xingassets.com/assets/frontend_minified/img/users/nobody_m.128x128.jpg" />
+                                                        @endif
+                                                    </td>
+                                                @endif
+                                                <td>Company</td>
+                                                <td colspan="2">
+                                                    @if(isset($person->getAttributes()['company']))
+                                                        @if(isset($person->getAttributes()['company-start']))
+                                                            {{ $person->getAttributes()['company'] }} (since {{ $person->getAttributes()['company-start'] }})
+                                                        @else
+                                                            {{ $person->getAttributes()['company'] }}
+                                                        @endif
                                                     @else
-                                                        <img style="max-height: 128px" src="https://x2.xingassets.com/assets/frontend_minified/img/users/nobody_m.128x128.jpg" />
+                                                        -
                                                     @endif
                                                 </td>
-                                            @endif
-                                            <td>Company</td>
-                                            <td colspan="2">
-                                                @if(isset($person->getAttributes()['company']))
-                                                    @if(isset($person->getAttributes()['company-start']))
-                                                        {{ $person->getAttributes()['company'] }} (since {{ $person->getAttributes()['company-start'] }})
+                                                <td>Job Title</td>
+                                                <td colspan="2">
+                                                    @if(isset($person->getAttributes()['job-title']))
+                                                        {{ $person->getAttributes()['job-title'] }}
                                                     @else
-                                                        {{ $person->getAttributes()['company'] }}
+                                                        -
                                                     @endif
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>Job Title</td>
-                                            <td colspan="2">
-                                                @if(isset($person->getAttributes()['job-title']))
-                                                    {{ $person->getAttributes()['job-title'] }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Private Location</td>
-                                            <td colspan="2">
-                                                @if(isset($person->getAttributes()['private_address']))
-                                                    <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                            <td>Business Location</td>
-                                            <td colspan="2">
-                                                @if(isset($person->getAttributes()['business_address']))
-                                                    <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Languages</td>
-                                            <td colspan="2">
-                                                @if(isset($person->getAttributes()['languages']))
-                                                    {{ $person->getAttributes()['languages'] }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>Birthday</td>
-                                            <td colspan="2">
-                                                @if(isset($person->getAttributes()['birthday']))
-                                                    {{ $person->getAttributes()['birthday'] }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                @if(isset($person->getAttributes()['phone']))
-                                                    Phone: <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    Phone: <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if(isset($person->getAttributes()['email']))
-                                                    E-Mail: <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    E-Mail: <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if(isset($person->getAttributes()['mobile']))
-                                                    Messenger: <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    Messenger: <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if(isset($person->getAttributes()['fax']))
-                                                    Fax: <span class="glyphicon glyphicon-ok"></span>
-                                                @else
-                                                    Fax: <span class="glyphicon glyphicon-remove"></span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                        </div>
-                        <div class="panel-footer">
-                            @if($person->getAttributes()['resource'] == 'Whois_pocs' || !isset($person->getAttributes()['url']))
-                                Resource: {{ $person->getAttributes()['resource'] }}
-                            @else
-                                @if($person->getAttributes()['resource'] == 'xing')
-                                    Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/xing.png" /> | Url: {{ $person->getAttributes()['url'] }}
-                                @elseif($person->getAttributes()['resource'] == 'linkedin')
-                                    Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/linkedin.png" /> | Url: {{ $person->getAttributes()['url'] }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Private Location</td>
+                                                <td colspan="2">
+                                                    @if(isset($person->getAttributes()['private_address']))
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    @else
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    @endif
+                                                </td>
+                                                <td>Business Location</td>
+                                                <td colspan="2">
+                                                    @if(isset($person->getAttributes()['business_address']))
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    @else
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Languages</td>
+                                                <td colspan="2">
+                                                    @if(isset($person->getAttributes()['languages']))
+                                                        {{ $person->getAttributes()['languages'] }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>Birthday</td>
+                                                <td colspan="2">
+                                                    @if(isset($person->getAttributes()['birthday']))
+                                                        {{ $person->getAttributes()['birthday'] }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @if(isset($person->getAttributes()['phone']))
+                                                        Phone: <span class="glyphicon glyphicon-ok"></span>
+                                                    @else
+                                                        Phone: <span class="glyphicon glyphicon-remove"></span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if(isset($person->getAttributes()['email']))
+                                                        E-Mail: <span class="glyphicon glyphicon-ok"></span>
+                                                    @else
+                                                        E-Mail: <span class="glyphicon glyphicon-remove"></span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if(isset($person->getAttributes()['mobile']))
+                                                        Messenger: <span class="glyphicon glyphicon-ok"></span>
+                                                    @else
+                                                        Messenger: <span class="glyphicon glyphicon-remove"></span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if(isset($person->getAttributes()['fax']))
+                                                        Fax: <span class="glyphicon glyphicon-ok"></span>
+                                                    @else
+                                                        Fax: <span class="glyphicon glyphicon-remove"></span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class="panel-footer">
+                                @if($person->getAttributes()['resource'] == 'Whois_pocs' || !isset($person->getAttributes()['url']))
+                                    Resource: {{ $person->getAttributes()['resource'] }}
                                 @else
-                                    Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}
+                                    @if($person->getAttributes()['resource'] == 'xing')
+                                        Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/xing.png" /> | Url: {{ $person->getAttributes()['url'] }}
+                                    @elseif($person->getAttributes()['resource'] == 'linkedin')
+                                        Resource: <img style="max-height: 20px;margin-top: -10px" src="http://dev.schosser-it.de/images/logos/linkedin.png" /> | Url: {{ $person->getAttributes()['url'] }}
+                                    @else
+                                        Resource: {{ $person->getAttributes()['resource'] }} | Url: {{ $person->getAttributes()['url'] }}
+                                    @endif
                                 @endif
-                            @endif
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-            @if($i < count($profilesArray)-1)
+                    @endforeach
+                @if($i < count($profilesArray)-1)
+                    <div class="page-break"></div>
+                @endif
+            @endfor
+        @else
+            <div class="alert alert-info" role="alert">No profiles have been found.</div>
+        @endif
+        <div class="page-break"></div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">E-Mail Addresses</h3>
+            </div>
+            <div class="panel-body">
+
+                This page will only list explicit E-Mail Addresses that have been collected. If for example Xing profiles contain an E-Mail Address then those are "available" for the attacker, but not listed here.
+                @if(count($emailsArray))
+                    @for ($i = 0; $i < count($emailsArray); $i++)
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>E-Mail</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($emailsArray[$i] as $email)
+                                <tr>
+                                    <td>{{ $email }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        @if($i < count($emailsArray)-1)
+                            <div class="page-break"></div>
+                        @endif
+                    @endfor
+                @else
+                    <div class="alert alert-info" role="alert">No emails have been found.</div>
+                @endif
+            </div>
+        </div>
+        <div class="page-break"></div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Websites</h3>
+            </div>
+            <div class="panel-body">
+                @if(count($websitesArray))
+                    @for ($i = 0; $i < count($websitesArray); $i++)
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Website</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($websitesArray[$i] as $website)
+                                <tr>
+                                    <td>{{ $website }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        @if($i < count($websitesArray)-1)
+                            <div class="page-break"></div>
+                        @endif
+                    @endfor
+                @else
+                    <div class="alert alert-info" role="alert">No websites have been found.</div>
+                @endif
                 <div class="page-break"></div>
-            @endif
-        @endfor
-    @else
-        <div class="alert alert-info" role="alert">No profiles have been found.</div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Locations</h3>
+            </div>
+            <div class="panel-body">
+
+                <div style="text-align: center;"><div id="map"></div></div>
+
+                @if(count($locationsArray))
+                    @for ($i = 0; $i < count($locationsArray); $i++)
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Coordinates</th>
+                                <th>Timestamp</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($locationsArray[$i] as $location)
+                                <tr>
+                                    <td>{{ $location->getName() }}</td>
+                                    <td style="width: 175px">{{ $location->getCoordinates() }}</td>
+                                    <td>{{ $location->getTimestamp() }}</td>
+                                    <td>{{ $location->getDescription() }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        @if($i < count($locationsArray)-1)
+                            <div class="page-break"></div>
+                        @endif
+                    @endfor
+                @else
+                    <div class="alert alert-info" role="alert">No locations have been found.</div>
+                @endif
+            </div>
+        </div>
     @endif
-    <div class="page-break"></div>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">E-Mail Addresses</h3>
-        </div>
-        <div class="panel-body">
-
-            This page will only list explicit E-Mail Addresses that have been collected. If for example Xing profiles contain an E-Mail Address then those are "available" for the attacker, but not listed here.
-            @if(count($emailsArray))
-                @for ($i = 0; $i < count($emailsArray); $i++)
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>E-Mail</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($emailsArray[$i] as $email)
-                            <tr>
-                                <td>{{ $email }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    @if($i < count($emailsArray)-1)
-                        <div class="page-break"></div>
-                    @endif
-                @endfor
-            @else
-                <div class="alert alert-info" role="alert">No emails have been found.</div>
-            @endif
-        </div>
-    </div>
-    <div class="page-break"></div>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Websites</h3>
-        </div>
-        <div class="panel-body">
-            @if(count($websitesArray))
-                @for ($i = 0; $i < count($websitesArray); $i++)
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Website</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($websitesArray[$i] as $website)
-                            <tr>
-                                <td>{{ $website }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    @if($i < count($websitesArray)-1)
-                        <div class="page-break"></div>
-                    @endif
-                @endfor
-            @else
-                <div class="alert alert-info" role="alert">No websites have been found.</div>
-            @endif
-            <div class="page-break"></div>
-        </div>
-    </div>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Locations</h3>
-        </div>
-        <div class="panel-body">
-
-            <div style="text-align: center;"><div id="map"></div></div>
-
-            @if(count($locationsArray))
-                @for ($i = 0; $i < count($locationsArray); $i++)
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Coordinates</th>
-                            <th>Timestamp</th>
-                            <th>Description</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($locationsArray[$i] as $location)
-                            <tr>
-                                <td>{{ $location->getName() }}</td>
-                                <td style="width: 175px">{{ $location->getCoordinates() }}</td>
-                                <td>{{ $location->getTimestamp() }}</td>
-                                <td>{{ $location->getDescription() }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    @if($i < count($locationsArray)-1)
-                        <div class="page-break"></div>
-                    @endif
-                @endfor
-            @else
-                <div class="alert alert-info" role="alert">No locations have been found.</div>
-            @endif
-        </div>
-    </div>
 
 </div>
 <!-- /#wrapper -->

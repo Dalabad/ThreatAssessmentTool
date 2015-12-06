@@ -6,6 +6,10 @@
 - Loading progress bars
 - Use LinkedIn API instead of website crawler
 
+## [0.3.7] - 2015-12-10
+### Fixed
+- Added simple/detailed report downloads
+
 ## [0.3.6] - 2015-11-27
 ### Fixed
 - Logic of LinkedIn and Xing Importer handling the dom elements

@@ -11,19 +11,19 @@
 |
 */
 
-Route::get('/',                 'ApplicationController@index');
-Route::get('/assessment',       'ApplicationController@assessment');
-Route::get('/help',             'ApplicationController@help');
-Route::get('/contact',          'ApplicationController@contact');
-Route::get('/pdf',              'ApplicationController@pdf');
+Route::get('/',                     'ApplicationController@index');
+Route::get('/assessment',           'ApplicationController@assessment');
+Route::get('/help',                 'ApplicationController@help');
+Route::get('/contact',              'ApplicationController@contact');
+Route::get('/download/{detailed?}', 'ApplicationController@getPdf');
 
-Route::get('/result',           'ResultController@people');
-Route::get('/result/people',    'ResultController@people');
-Route::get('/result/mail',      'ResultController@mail');
-Route::get('/result/location',  'ResultController@location');
-Route::get('/result/website',   'ResultController@website');
+Route::get('/result',               'ResultController@people');
+Route::get('/result/people',        'ResultController@people');
+Route::get('/result/mail',          'ResultController@mail');
+Route::get('/result/location',      'ResultController@location');
+Route::get('/result/website',       'ResultController@website');
 
-Route::get('/api/xing/{seed}',     'InformationController@xingApi');
+Route::get('/api/xing/{seed}',      'InformationController@xingApi');
 
 Route::get('/information/reset',                'InformationController@reset');
 Route::post('/information/upload',              'InformationController@upload');
