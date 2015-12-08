@@ -45,7 +45,7 @@ class CharacteristicDescription
             case 'network':
                 return ['title' => 'Network', 'description' => 'Most social engineering attackers use someone on the inside to open a connection, which the attacker can use from the outside. In this case the attacker needs knowledge about the network.'];
             case 'organization':
-                return ['title' => 'Organization', 'description' => 'The layout of an organization can help social engineers to find their way around. Using organization hierarchies for threatening employees that their superiors need something, can motivcate employees to ignore security measures.'];
+                return ['title' => 'Organization', 'description' => 'The layout of an organization can help social engineers to find their way around. Using organization hierarchies for threatening employees that their superiors need something, can motivate employees to ignore security measures.'];
             case 'special_knowledge':
                 return ['title' => 'Employees with Special Knowledge', 'description' => 'Employees with special knowledge are of special interest for attackers. Often only the person with special privileges can access certain data, which is relevant for the attacker.'];
             case 'new_employee':
