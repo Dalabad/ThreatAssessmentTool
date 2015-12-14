@@ -89,7 +89,7 @@ class Calculator
                         $counter++;
                     }
                 }
-                return 100/$this->_companyInformation['companyEmployeeCount']*$counter;
+                return min(100, 100/$this->_companyInformation['companyEmployeeCount']*$counter);
             case 'private_locations':
             case 'company_locations':
                 if(isset($this->_companyInformation['companyLocation']))
@@ -102,7 +102,7 @@ class Calculator
                 else
                     return 0;
             case 'personal_information':
-                return number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['profiles'])+$this->_companyInformation['socialAccounts']),2);
+                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['profiles'])+$this->_companyInformation['socialAccounts']),2));
             case 'email':
 
                 if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
@@ -115,7 +115,7 @@ class Calculator
                         $counter++;
                     }
                 }
-                return number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['emails'])+$counter),2);
+                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['emails'])+$counter),2));
             case 'messenger':
                 if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
                     return 0;
@@ -127,14 +127,14 @@ class Calculator
                         $counter++;
                     }
                 }
-                return number_format(100/$this->_companyInformation['companyEmployeeCount']*$counter, 2);
+                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*$counter, 2));
             case 'lingo':
                 if(isset($this->_companyInformation['companyLingo']))
                     return min(100, number_format($this->_companyInformation['companyLingo']*33,2));
                 else
                     return 0;
             case 'websites':
-                return min(100, number_format(count($this->_findings['websites'])*5,2));
+                return min(100, count($this->_findings['websites'])*5);
             case 'security_measure':
                 if(isset($this->_companyInformation['companySecurity']))
                     return $this->_companyInformation['companySecurity'];
