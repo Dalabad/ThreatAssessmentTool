@@ -6,6 +6,10 @@
 - Loading progress bars
 - Use LinkedIn API instead of website crawler
 
+## [0.3.8] - 2015-12-18
+### Fixed
+- Changed some formulas to cap values between 0-100
+
 ## [0.3.7] - 2015-12-10
 ### Fixed
 - Added simple/detailed report downloads
