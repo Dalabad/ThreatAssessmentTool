@@ -91,9 +91,13 @@ class Calculator
                 }
                 return min(100, 100/$this->_companyInformation['companyEmployeeCount']*$counter);
             case 'private_locations':
+                if(isset($this->_findings['locations']))
+                    return min(100, count($this->_findings['locations'])*5);
+                else
+                    return 0;
             case 'company_locations':
                 if(isset($this->_companyInformation['companyLocation']))
-                    return min(100, number_format($this->_companyInformation['companyLocation']*20,2));
+                    return min(100, $this->_companyInformation['companyLocation']*20);
                 else
                     return 0;
             case 'friends':
@@ -102,7 +106,7 @@ class Calculator
                 else
                     return 0;
             case 'personal_information':
-                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['profiles'])+$this->_companyInformation['socialAccounts']),2));
+                return min(100, 100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['profiles'])+$this->_companyInformation['socialAccounts']),2);
             case 'email':
 
                 if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
@@ -115,7 +119,7 @@ class Calculator
                         $counter++;
                     }
                 }
-                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['emails'])+$counter),2));
+                return min(100, 100/$this->_companyInformation['companyEmployeeCount']*(count($this->_findings['emails'])+$counter));
             case 'messenger':
                 if(!isset($this->_findings['profiles']) || !count($this->_findings['profiles'])) {
                     return 0;
@@ -127,10 +131,10 @@ class Calculator
                         $counter++;
                     }
                 }
-                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*$counter, 2));
+                return min(100, 100/$this->_companyInformation['companyEmployeeCount']*$counter, 2);
             case 'lingo':
                 if(isset($this->_companyInformation['companyLingo']))
-                    return min(100, number_format($this->_companyInformation['companyLingo']*33,2));
+                    return min(100, $this->_companyInformation['companyLingo']*33,2);
                 else
                     return 0;
             case 'websites':
@@ -161,11 +165,11 @@ class Calculator
                         $counter++;
                     }
                 }
-                return min(100, number_format(100/$this->_companyInformation['companyEmployeeCount']*$counter,2));
+                return min(100, 100/$this->_companyInformation['companyEmployeeCount']*$counter,2);
             case 'special_knowledge':
-                return number_format(100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']),2);
+                return 100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']);
             case 'new_employee':
-                return number_format(100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']),2);
+                return 100/$this->_companyInformation['companyEmployeeCount']*count($this->_findings['profiles']);
             default:
                 return 0;
         }
