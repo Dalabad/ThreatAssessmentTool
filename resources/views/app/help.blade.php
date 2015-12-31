@@ -83,7 +83,7 @@
             </ul>
             <h3>TheHarvester</h3>
             <ul>
-                <li>Find PGP Keys</li>
+                <li>Find PGP Keys, E-Mail Addresses and Hosts:</li>
                 <ul>
                     <li>Execute <code>theharvester -d %DOMAIN|COMPANY% -b all -f %filename.xml%</code></li>
                 </ul>
