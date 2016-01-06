@@ -102,7 +102,7 @@ class Calculator
                     return 0;
             case 'friends':
                 if(isset($this->_companyInformation['socialAccounts']))
-                    return min(100, $this->_companyInformation['socialAccounts']*1.3);
+                    return min(100, $this->_companyInformation['socialAccounts']*1.45);
                 else
                     return 0;
             case 'personal_information':
